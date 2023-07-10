@@ -1,0 +1,9 @@
+.footer{
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    background-color: #8b61f2;
+    align-items: center;
+    height: 100px;
+}
