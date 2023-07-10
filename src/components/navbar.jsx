@@ -26,19 +26,11 @@ const links = [{
   }
 ];
 
-const userLinks = [{
+const userData = {
     id: 1,
-    title: "Login",
-    url: "/login",
-  }, {
-    id: 2,
-    title: "Cadastro",
-    url: "/register",
-  }, {
-    id: 3,
     title: "Meus Dados",
     url: "/account/meus-dados",
-}]
+}
 
 const Navbar = () => {
   return (
@@ -64,7 +56,9 @@ const Navbar = () => {
       </div>
       <div className={`${style.column} ${style.userColumn}`}>
         <div className={style.userInfo}>
-          <p className={style.userInfoText}>Faça o login ou crie sua conta</p>
+          <div className={style.userInfoText}>
+            <Link href="/login">Faça o login</Link> ou <Link href="/register">crie sua conta</Link>
+          </div>
           <Image src="/person.svg" width={30} height={30} alt="User" />
         </div>
       </div>
