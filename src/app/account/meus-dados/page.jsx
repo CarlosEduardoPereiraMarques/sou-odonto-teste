@@ -25,20 +25,15 @@ const userDataForm = [
     inputType: "text",
   },
   {
+    title: "CPF ou CNPJ:",
+    htmlFor: "cpf",
+    inputType: "text",
+  },
+  {
     title: "Email:",
     htmlFor: "email",
     inputType: "email",
-  },
-  {
-    title: "Senha:",
-    htmlFor: "password",
-    inputType: "password",
-  },
-  {
-    title: "Confirme sua senha:",
-    htmlFor: "confirmPassword",
-    inputType: "password",
-  },
+  }
 ];
 
 const UserData = () => {
@@ -58,11 +53,15 @@ const UserData = () => {
           </li>
         ))}
       </ul>
-
       <h3>Meus Dados:</h3>
       <form action="userdata_endpoint" method='GET'>
-        <label htmlFor=""></label>
-        <input type="text" name="" id="" />
+        {userDataForm.map((userData) => (
+          <>
+            <label htmlFor={userData.htmlFor}>{userData.title}</label>
+            <input type={userData.inputType} name={userData.title}/>
+            <br />
+          </>
+        ))}
       </form>
     </div>
   )
