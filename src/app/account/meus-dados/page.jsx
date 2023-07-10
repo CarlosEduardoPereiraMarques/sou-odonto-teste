@@ -1,8 +1,70 @@
 import React from 'react'
+import Link from 'next/link'
+import style from '@/app/styles/meus-dados.module.css'
+
+const links = [{
+    id: 1,
+    title: 'Meus dados',
+    url: '/account/meus-dados'
+  }, {
+    id: 2,
+    title: 'Listas de Compras',
+    url: '/account/listas-de-compras'
+  }
+]
+
+const userDataForm = [
+  {
+    title: "Nome:",
+    htmlFor: "name",
+    inputType: "text",
+  },
+  {
+    title: "Sobrenome:",
+    htmlFor: "surname",
+    inputType: "text",
+  },
+  {
+    title: "Email:",
+    htmlFor: "email",
+    inputType: "email",
+  },
+  {
+    title: "Senha:",
+    htmlFor: "password",
+    inputType: "password",
+  },
+  {
+    title: "Confirme sua senha:",
+    htmlFor: "confirmPassword",
+    inputType: "password",
+  },
+];
 
 const UserData = () => {
   return (
-    <div>User Data</div>
+    <div>
+      <div className={style.breadcrumb}>
+        <Link href="/register">Home</Link>
+        <span className={style.divider}>/</span>
+        <Link href="/accounts/meus-dados">Minha conta</Link>
+        <span className={style.divider}>/</span>
+        <span className={style.active}>Meus dados</span>
+      </div>
+      <ul>
+        {links.map((link) => (
+          <li key={link.id}>
+            <Link href={link.url}>{link.title}</Link>
+          </li>
+        ))}
+      </ul>
+
+      <h3>Meus Dados:</h3>
+      <form action="userdata_endpoint" method='GET'>
+        <label htmlFor=""></label>
+        <input type="text" name="" id="" />
+      </form>
+    </div>
   )
 }
 

@@ -24,7 +24,7 @@
 }
 
 .userColumn {
-  flex: 0 0 50px; 
+  flex: 0 0 50px;
 }
 
 .navbar li {
@@ -41,65 +41,32 @@
   border-color: #cacaca;
 }
 
-.categories{
-    text-decoration: none;
-}
-
-.categories li :hover{
-    background-color: #6d4dbe;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.userInfo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .userInfoText {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: left;
-  }
-  
-.navbar {
-  display: flex;
-  align-items: center;
-  background-color: #8B61F2;
-  height: 100px;
-  padding: 10px;
-}
-
-.column {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.logo {
-  margin-right: 50px;
-}
-
-.search {
-  margin-right: 10px;
-}
-
 .categories {
-  display: flex;
-  list-style: none;
-  padding: 0;
+  text-decoration: none;
 }
 
-.categories li {
-  margin-right: 10px;
+.categories li :hover {
+  background-color: #6d4dbe;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .userInfo {
   display: flex;
   align-items: center;
+  width: 160px;
 }
 
 .userInfoText {
-  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background-color: #ffffff;
+  margin: 0 10px;
 }

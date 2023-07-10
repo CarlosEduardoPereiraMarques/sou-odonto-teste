@@ -57,9 +57,14 @@ const Navbar = () => {
       <div className={`${style.column} ${style.userColumn}`}>
         <div className={style.userInfo}>
           <div className={style.userInfoText}>
-            <Link href="/login">Faça o login</Link> ou <Link href="/register">crie sua conta</Link>
+            <div>
+              <Link href="/login">Faça o login</Link>
+            </div>
+            <hr className={style.divider} />
+            <div>
+              <Link href="/register">Crie sua conta</Link>
+            </div>
           </div>
-          <Image src="/person.svg" width={30} height={30} alt="User" />
         </div>
       </div>
     </header>
