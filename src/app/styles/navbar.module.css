@@ -33,22 +33,28 @@
 }
 
 .search {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   width: 500px;
   height: 30px;
   background-color: #ffffff;
   color: #000000;
   border-color: #cacaca;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .categories {
   text-decoration: none;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  font-size: large;
 }
 
 .categories li :hover {
   background-color: #6d4dbe;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 10px;
+  padding: 5px;
+  transition: 100ms;
 }
 
 .userInfo {
@@ -69,4 +75,15 @@
   height: 40px;
   background-color: #ffffff;
   margin: 0 10px;
+}
+
+.userInfoRegister :hover,
+.userInfoLogin :hover {
+  font-weight: bold;
+}
+
+.logoImg {
+  display: block;
+  max-width: auto;
+  height: auto;
 }
