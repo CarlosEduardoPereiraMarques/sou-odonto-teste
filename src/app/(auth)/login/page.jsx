@@ -15,7 +15,18 @@ const loginForm = [
   },
 ];
 
-const Login = () => {
+async function getUserData(){
+  const res = await fetch("http://localhost:3000/api/users", {
+    cache: "no-store"
+  })
+  if (!res.ok){
+    throw new Error("Failed to fetch data")
+  }
+  return res.json()
+}
+
+const Login = async() => {
+  userData = await getUserData()
   return (
     <div>
       <h1>Acessar</h1>
@@ -29,6 +40,7 @@ const Login = () => {
         ))}
       </form>
       <button>Acessar</button>
+      <h1>{userData.name}</h1>
     </div>
   );
 };

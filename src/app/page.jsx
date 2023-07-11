@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import { get } from 'http'
 
 export const metadata = {
   title: 'Home',
@@ -7,8 +8,13 @@ export const metadata = {
   
 }
 
+
+
 export default function Home() {
     return (
-      <div>Home</div>
+      <>
+        <div>Home</div>
+        
+      </>
     )
 }
