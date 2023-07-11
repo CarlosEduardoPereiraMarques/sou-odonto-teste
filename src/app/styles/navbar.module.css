@@ -15,10 +15,6 @@
   justify-content: center;
 }
 
-.logoColumn {
-  flex: 0 0 100px;
-}
-
 .searchColumn {
   flex: 1;
 }
@@ -82,8 +78,3 @@
   font-weight: bold;
 }
 
-.logoImg {
-  display: block;
-  max-width: auto;
-  height: auto;
-}
