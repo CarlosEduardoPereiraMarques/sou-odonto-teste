@@ -1,10 +1,8 @@
 .footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
-  height: 100px; /* Altura do footer */
+  height: 100px;
   background-color: #8b61f2;
-
   display: flex;
   justify-content: center;
   align-items: center;
