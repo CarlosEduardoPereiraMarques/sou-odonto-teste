@@ -1,20 +1,22 @@
-"use client"
-import React from 'react'
-import Link from 'next/link'
-import style from '@/app/styles/meus-dados.module.css'
+"use client";
+import React from "react";
+import Link from "next/link";
+import style from "@/app/styles/meus-dados.module.css";
 import { useSession } from "next-auth/react";
-import LoginAlert from '@/components/loginAlert';
+import LoginAlert from "@/components/loginAlert";
 
-const links = [{
+const links = [
+  {
     id: 1,
-    title: 'Meus dados',
-    url: '/account/meus-dados'
-  }, {
+    title: "Meus dados",
+    url: "/account/meus-dados",
+  },
+  {
     id: 2,
-    title: 'Listas de Compras',
-    url: '/account/listas-de-compras'
-  }
-]
+    title: "Listas de Compras",
+    url: "/account/listas-de-compras",
+  },
+];
 
 const userDataForm = [
   {
@@ -31,13 +33,13 @@ const userDataForm = [
     title: "Email:",
     htmlFor: "email",
     inputType: "email",
-  }
+  },
 ];
 
 const UserData = () => {
-  const session = useSession()
+  const session = useSession();
   if (session.status === "unauthenticated") {
-    return <LoginAlert/>
+    return <LoginAlert />;
   }
   return (
     <div>
@@ -56,17 +58,17 @@ const UserData = () => {
         ))}
       </ul>
       <h3>Meus Dados:</h3>
-      <form action="userdata_endpoint" method='GET'>
+      <form action="userdata_endpoint" method="GET">
         {userDataForm.map((userData) => (
           <>
             <label htmlFor={userData.htmlFor}>{userData.title}</label>
-            <input type={userData.inputType} name={userData.title}/>
+            <input type={userData.inputType} name={userData.title} />
             <br />
           </>
         ))}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default UserData
+export default UserData;

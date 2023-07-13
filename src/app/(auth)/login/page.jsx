@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -14,8 +14,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
-    signIn("credentials", { email, password })
-    
+    signIn("credentials", { email, password });
   };
 
   return (
@@ -24,7 +23,7 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Senha" />
-        <button onClick={()=> signIn("credentials")}>Acessar</button>
+        <button onClick={() => signIn("credentials")}>Acessar</button>
       </form>
     </div>
   );

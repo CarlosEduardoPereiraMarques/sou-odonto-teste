@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 import style from "@/app/styles/navbar.module.css";
@@ -24,11 +24,11 @@ const links = [
     id: 4,
     title: "Endodontia",
     url: "/categories/endodontia",
-  }
+  },
 ];
 
 const Navbar = () => {
-  const session = useSession(); 
+  const session = useSession();
   return (
     <header className={style.navbar}>
       <div className={`${style.column} ${style.searchColumn}`}>
@@ -50,8 +50,13 @@ const Navbar = () => {
             ))}
             {session.status !== "authenticated" ? (
               <li></li>
-              ) : (
-              <li><Link href="/account/listas-de-compras"> Lista de Compras </Link></li>              
+            ) : (
+              <li>
+                <Link href="/account/listas-de-compras">
+                  {" "}
+                  Lista de Compras{" "}
+                </Link>
+              </li>
             )}
           </ul>
         </div>
@@ -61,7 +66,7 @@ const Navbar = () => {
           {session.status === "unauthenticated" ? (
             <div className={style.userInfoText}>
               <div className={style.userInfoLogin}>
-                <Link href="/login">Faça o login</Link>  
+                <Link href="/login">Faça o login</Link>
               </div>
               <hr className={style.divider} />
               <div className={style.userInfoRegister}>
@@ -70,11 +75,9 @@ const Navbar = () => {
             </div>
           ) : (
             <div className={style.userInfoText}>
-            <Link href="/account/meus-dados">Meus dados</Link>
-            <button onClick={() => signOut()}>
-              Logout
-            </button> 
-          </div>
+              <Link href="/account/meus-dados">Meus dados</Link>
+              <button onClick={() => signOut()}>Logout</button>
+            </div>
           )}
         </div>
       </div>
