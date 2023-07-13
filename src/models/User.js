@@ -2,17 +2,8 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-let User;
 
-try {
-  User = mongoose.model("User");
-} catch (error) {
   const UserSchema = new Schema({
-    id: {
-      type: Number,
-      unique: true,
-      required: true,
-    },
     name: {
       type: String,
       required: true,
@@ -31,9 +22,6 @@ try {
       type: String,
       required: true,
     },
-  });
+  })
 
-  User = mongoose.model("User", UserSchema);
-}
-
-export default User;
+export default mongoose.models.User || mongoose.model("User", UserSchema);
