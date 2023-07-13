@@ -1,7 +1,8 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import style from "@/app/styles/navbar.module.css";
-
+import { signOut, useSession } from "next-auth/react";
 
 const links = [
   {
@@ -23,21 +24,11 @@ const links = [
     id: 4,
     title: "Endodontia",
     url: "/categories/endodontia",
-  },
-  {
-    id: 5,
-    title: "Listas de Compras",
-    url: "/account/listas-de-compras",
   }
 ];
 
-const userData = {
-  id: 1,
-  title: "Meus Dados",
-  url: "/account/meus-dados",
-};
-
 const Navbar = () => {
+  const session = useSession(); 
   return (
     <header className={style.navbar}>
       <div className={`${style.column} ${style.searchColumn}`}>
@@ -57,20 +48,34 @@ const Navbar = () => {
                 <Link href={link.url}>{link.title}</Link>
               </li>
             ))}
+            {session.status !== "unauthenticated" ? (
+              <li><Link href="/account/listas-de-compras"> Lista de Compras </Link></li>
+            ) : (
+              <li></li>
+            )}
           </ul>
         </div>
       </div>
       <div className={`${style.column} ${style.userColumn}`}>
         <div className={style.userInfo}>
-          <div className={style.userInfoText}>
-            <div className={style.userInfoLogin}>
-              <Link href="/login">Faça o login</Link>
+          {session.status === "unauthenticated" ? (
+            <div className={style.userInfoText}>
+              <div className={style.userInfoLogin}>
+                <Link href="/login">Faça o login</Link>  
+              </div>
+              <hr className={style.divider} />
+              <div className={style.userInfoRegister}>
+                <Link href="/register">Crie sua conta</Link>
+              </div>
             </div>
-            <hr className={style.divider} />
-            <div className={style.userInfoRegister}>
-              <Link href="/register">Crie sua conta</Link>
-            </div>
+          ) : (
+            <div className={style.userInfoText}>
+            <Link href="/account/meus-dados">Meus dados</Link>
+            <button onClick={() => signOut()}>
+              Logout
+            </button> 
           </div>
+          )}
         </div>
       </div>
     </header>

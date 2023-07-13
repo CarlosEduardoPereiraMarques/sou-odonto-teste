@@ -1,6 +1,9 @@
+"use client"
 import React from 'react'
 import Link from 'next/link'
 import style from '@/app/styles/meus-dados.module.css'
+import { useSession } from "next-auth/react";
+import LoginAlert from '@/components/loginAlert';
 
 const links = [{
     id: 1,
@@ -32,6 +35,10 @@ const userDataForm = [
 ];
 
 const UserData = () => {
+  const session = useSession()
+  if (session.status === "unauthenticated") {
+    return <LoginAlert/>
+  }
   return (
     <div>
       <div className={style.breadcrumb}>
