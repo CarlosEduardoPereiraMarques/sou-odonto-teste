@@ -48,10 +48,10 @@ const Navbar = () => {
                 <Link href={link.url}>{link.title}</Link>
               </li>
             ))}
-            {session.status !== "unauthenticated" ? (
-              <li><Link href="/account/listas-de-compras"> Lista de Compras </Link></li>
-            ) : (
+            {session.status !== "authenticated" ? (
               <li></li>
+              ) : (
+              <li><Link href="/account/listas-de-compras"> Lista de Compras </Link></li>              
             )}
           </ul>
         </div>

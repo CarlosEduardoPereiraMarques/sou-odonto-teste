@@ -30,9 +30,9 @@ const handler = NextAuth({
       }
     })
   ],
-  // pages:{
-  //   error: "/login"
-  // }
+  pages:{
+    error: "/login"
+  }
 });
 
 export { handler as GET, handler as POST };
