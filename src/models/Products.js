@@ -19,12 +19,10 @@ try {
     },
     price: {
       type: Number,
-      unique: true,
       required: true,
     },
     manufacturer: {
       type: String,
-      unique: true,
       required: true,
     },
     category: {

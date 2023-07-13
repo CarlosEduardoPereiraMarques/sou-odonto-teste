@@ -1,5 +1,6 @@
 .container {
   flex-grow: 1;
+  color: #3d3a3a;
 }
 
 .body {
