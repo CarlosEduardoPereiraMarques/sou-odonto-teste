@@ -15,13 +15,8 @@ const links = [{
 
 const userDataForm = [
   {
-    title: "Nome:",
+    title: "Nome Completo:",
     htmlFor: "name",
-    inputType: "text",
-  },
-  {
-    title: "Sobrenome:",
-    htmlFor: "surname",
     inputType: "text",
   },
   {
