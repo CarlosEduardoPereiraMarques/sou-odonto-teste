@@ -7,35 +7,30 @@ let BuylistProducts;
 try {
   BuylistProducts = mongoose.model("buylistproducts");
 } catch (error) {
-  const buylistProductSchema = new Schema({
+  const BuylistProductsSchema = new Schema({
     user_id: {
-      type: Number,
-      unique: true,
+      type: String,
       required: true,
     },
     list_id: {
-      type: Number,
-      unique: true,
+      type: String,
       required: true,
     },
     product_id: {
       type: Number,
-      unique: true,
       required: true,
     },
     amount: {
       type: Number,
-      unique: true,
       required: true,
     },
     obligatory_item: {
       type: Boolean,
-      unique: true,
       required: true,
     },
   });
 
-  BuylistProducts = mongoose.model("buylistsproducts", buylistProductSchema);
+  BuylistProducts = mongoose.model("buylistproducts", BuylistProductsSchema);
 }
 
 export default BuylistProducts;

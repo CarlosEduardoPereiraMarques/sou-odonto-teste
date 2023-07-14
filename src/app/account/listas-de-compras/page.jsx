@@ -5,6 +5,7 @@ import style from "@/app/styles/meus-dados.module.css";
 import { useSession } from "next-auth/react";
 import LoginAlert from "@/components/loginAlert";
 import { useRouter } from "next/navigation";
+import BuyLists from "@/components/buylists";
 
 const links = [
   {
@@ -29,7 +30,6 @@ const UserBuylist = () => {
   const redirectToCreate = () => {
     router.push("/account/listas-de-compras/create");
   };
-
   return (
     <div>
       <div className={style.breadcrumb}>
@@ -48,7 +48,7 @@ const UserBuylist = () => {
       </ul>
       <button onClick={redirectToCreate}>Adicionar lista de compras</button>
       <ul>
-        <li>Fazer GET </li>
+          {session.status === "authenticated" && <BuyLists session={session}/>}
       </ul>
     </div>
   );

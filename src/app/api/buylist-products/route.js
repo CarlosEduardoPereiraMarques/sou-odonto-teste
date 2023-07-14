@@ -11,3 +11,28 @@ export const GET = async (request) => {
     return new NextResponse("Database Error", { status: 500 });
   }
 };
+
+
+export const POST = async (request) => {
+  const {user_id, buylist_id, product_id, amount, obligatory_item } = await request.json()
+  await connectDB();
+  const newBuylistProducts = new BuylistProducts({
+    user_id: user_id.toString(),
+    list_id: buylist_id.toString(),
+    product_id: product_id,
+    amount,
+    obligatory_item
+  });
+  
+  try {
+    await newBuylistProducts.save();
+    console.log("BuylistProduct has been created");
+    return new NextResponse("BuylistProduct has been created", {
+      status: 201,
+    });
+  } catch (err) {
+    return new NextResponse(err.message, {
+      status: 500,
+    });
+  }
+}
