@@ -36,3 +36,11 @@ export const POST = async (request) => {
     });
   }
 }
+
+export const PUT = async (request) => {
+  //atualizar as informações dos produtos
+}
+
+export const DELETE = async (request) => {
+  //deletar produtos
+}

@@ -3,9 +3,6 @@ import User from "@/models/User";
 import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
-
-
-
 export const POST = async (request) => {
   const { name, description, user_email } = await request.json();
   await connectDB();
@@ -27,3 +24,11 @@ export const POST = async (request) => {
     });
   }
 };
+
+export const PUT = async (request) => {
+  //atualizar dados de uma lista de compras
+}
+
+export const DELETE = async (request) => {
+  //excluir lista de compras
+}
