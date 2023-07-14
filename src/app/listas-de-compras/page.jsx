@@ -7,19 +7,6 @@ import LoginAlert from "@/components/loginAlert";
 import { useRouter } from "next/navigation";
 import BuyLists from "@/components/buylists";
 
-const links = [
-  {
-    id: 1,
-    title: "Meus dados",
-    url: "/account/meus-dados",
-  },
-  {
-    id: 2,
-    title: "Listas de Compras",
-    url: "/account/listas-de-compras",
-  },
-];
-
 const UserBuylist = () => {
   const router = useRouter();
   const session = useSession();
@@ -37,13 +24,6 @@ const UserBuylist = () => {
         <span className={style.divider}>/</span>
         <span className={style.active}>Listas de Compras</span>
       </div>
-      <ul>
-        {links.map((link) => (
-          <li key={link.id}>
-            <Link href={link.url}>{link.title}</Link>
-          </li>
-        ))}
-      </ul>
       <button onClick={redirectToCreate}>Adicionar lista de compras</button>
       <ul>
         {session.status === "authenticated" && <BuyLists session={session} />}

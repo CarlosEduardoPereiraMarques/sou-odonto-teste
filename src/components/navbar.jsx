@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import style from "@/app/styles/navbar.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
 import { signOut, useSession } from "next-auth/react";
 
 const links = [

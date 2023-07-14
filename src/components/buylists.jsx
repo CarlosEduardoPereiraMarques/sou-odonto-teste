@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react";
 
 const BuyLists = ({ session }) => {
+  const router = useRouter();
   const [buylists, setBuylists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ const BuyLists = ({ session }) => {
       try {
         const user_email = session.data.user.email;
 
-        const res = await fetch(`/api/buylists/${user_email}`);
+        const res = await fetch(`/api/users/buylist/${user_email}`);
         if (res.ok) {
           const data = await res.json();
           setBuylists(data);
@@ -32,6 +34,10 @@ const BuyLists = ({ session }) => {
     return <div>Carregando...</div>;
   }
 
+  if (buylists.length === 0) {
+    return <div>Nenhuma lista de compras</div>;
+  }
+
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -40,7 +46,12 @@ const BuyLists = ({ session }) => {
     <div>
       {buylists.map((buylist) => (
         <div key={buylist._id}>
-          <Link href={`/listas-de-compras/${buylist._id}`}>{buylist.name}</Link>
+          <Link href={{
+                  pathname: `/listas-de-compras/${buylist._id}`,
+                  query: { listId: buylist._id },
+                }}>
+              {buylist.name}
+          </Link>
         </div>
       ))}
     </div>
