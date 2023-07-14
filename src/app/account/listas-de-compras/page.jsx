@@ -4,6 +4,7 @@ import Link from "next/link";
 import style from "@/app/styles/meus-dados.module.css";
 import { useSession } from "next-auth/react";
 import LoginAlert from "@/components/loginAlert";
+import { useRouter } from "next/navigation";
 
 const links = [
   {
@@ -19,10 +20,16 @@ const links = [
 ];
 
 const UserBuylist = () => {
+  const router = useRouter();
   const session = useSession();
   if (session.status === "unauthenticated") {
     return <LoginAlert />;
   }
+
+  const redirectToCreate = () => {
+    router.push("/account/listas-de-compras/create");
+  };
+
   return (
     <div>
       <div className={style.breadcrumb}>
@@ -30,7 +37,7 @@ const UserBuylist = () => {
         <span className={style.divider}>/</span>
         <Link href="/accounts/meus-dados">Minha conta</Link>
         <span className={style.divider}>/</span>
-        <span className={style.active}>Meus dados</span>
+        <span className={style.active}>Listas de Compras</span>
       </div>
       <ul>
         {links.map((link) => (
@@ -39,9 +46,9 @@ const UserBuylist = () => {
           </li>
         ))}
       </ul>
-      <button type="button">Adicionar lista de compras</button>
+      <button onClick={redirectToCreate}>Adicionar lista de compras</button>
       <ul>
-        <li>1.Aqui vão as listas</li>
+        <li>Fazer GET </li>
       </ul>
     </div>
   );

@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-let BuylistData;
+let BuylistDatas;
 
 try {
-  BuylistData = mongoose.model("buylistsdatas");
+  BuylistDatas = mongoose.model("buylistdatas");
 } catch (error) {
   const BuylistDataSchema = new Schema({
     user_id: {
-      type: Number,
-      unique: true,
+      type: String,
       required: true,
     },
     name: {
@@ -23,7 +22,7 @@ try {
     },
   });
 
-  BuylistData = mongoose.model("buylistsdatas", BuylistDataSchema);
+  BuylistDatas = mongoose.model("buylistdatas", BuylistDataSchema);
 }
 
-export default BuylistData;
+export default BuylistDatas;
