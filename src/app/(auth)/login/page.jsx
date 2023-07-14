@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Login = () => {
-  const session = useSession();
+  const [error, setError] = useState(null);
   const router = useRouter();
+  const session = useSession();
   if (session.status === "authenticated") {
     router.push("/");
   }
-  const [error, setError] = useState(null);
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;

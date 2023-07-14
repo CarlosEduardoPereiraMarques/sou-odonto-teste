@@ -8,12 +8,12 @@ import LoginAlert from "@/components/loginAlert";
 
 
 const UserBuylist = () => {
+  const [error, setError] = useState(null);
+  const router = useRouter();
   const session = useSession();
   if (session.status === "unauthenticated") {
     return <LoginAlert />;
   }
-  const [error, setError] = useState(null);
-  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target[0].value;
