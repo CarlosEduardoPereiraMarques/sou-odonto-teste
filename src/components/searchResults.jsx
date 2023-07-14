@@ -44,7 +44,6 @@ const SearchResults = ({ searchTerm }) => {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(results);
   return (
     <div>
       {results.map((result) => (
