@@ -12,18 +12,19 @@ export const GET = async (request) => {
   }
 };
 
-
 export const POST = async (request) => {
-  const {user_id, buylist_id, product_id, amount, obligatory_item } = await request.json()
+  const { user_email, buylist_id, product_id, amount, obligatory_item } =
+    await request.json();
   await connectDB();
+  const user = await BuylistProducts.findOne({ user_email: user_email });
   const newBuylistProducts = new BuylistProducts({
-    user_id: user_id.toString(),
+    user_id: user._id.toString(),
     list_id: buylist_id.toString(),
     product_id: product_id,
     amount,
-    obligatory_item
+    obligatory_item,
   });
-  
+
   try {
     await newBuylistProducts.save();
     console.log("BuylistProduct has been created");
@@ -35,12 +36,12 @@ export const POST = async (request) => {
       status: 500,
     });
   }
-}
+};
 
 export const PUT = async (request) => {
   //atualizar as informações dos produtos
-}
+};
 
 export const DELETE = async (request) => {
   //deletar produtos
-}
+};

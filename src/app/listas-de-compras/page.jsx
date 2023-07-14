@@ -28,14 +28,12 @@ const UserBuylist = () => {
   }
 
   const redirectToCreate = () => {
-    router.push("/account/listas-de-compras/create");
+    router.push("/listas-de-compras/create");
   };
   return (
     <div>
       <div className={style.breadcrumb}>
         <Link href="/register">Home</Link>
-        <span className={style.divider}>/</span>
-        <Link href="/accounts/meus-dados">Minha conta</Link>
         <span className={style.divider}>/</span>
         <span className={style.active}>Listas de Compras</span>
       </div>
@@ -48,7 +46,7 @@ const UserBuylist = () => {
       </ul>
       <button onClick={redirectToCreate}>Adicionar lista de compras</button>
       <ul>
-          {session.status === "authenticated" && <BuyLists session={session}/>}
+        {session.status === "authenticated" && <BuyLists session={session} />}
       </ul>
     </div>
   );

@@ -39,7 +39,9 @@ const BuyLists = ({ session }) => {
   return (
     <div>
       {buylists.map((buylist) => (
-        <div key={buylist._id}><Link href={`/account/listas-de-compras/${buylist._id}`}>{buylist.name}</Link></div>
+        <div key={buylist._id}>
+          <Link href={`/listas-de-compras/${buylist._id}`}>{buylist.name}</Link>
+        </div>
       ))}
     </div>
   );

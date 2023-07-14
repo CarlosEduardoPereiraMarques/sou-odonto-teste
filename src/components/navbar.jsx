@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import style from "@/app/styles/navbar.module.css";
+import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
 const links = [
@@ -29,17 +30,34 @@ const links = [
 
 const Navbar = () => {
   const session = useSession();
+  const router = useRouter();
+
+  async function searchTerm(event) {
+    event.preventDefault();
+    const searchTerm = event.target[0].value;
+    try {
+      router.push({
+        pathname: `/products/${searchTerm}`,
+        query: { searchTerm: searchTerm },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <header className={style.navbar}>
       <div className={`${style.column} ${style.searchColumn}`}>
         <div>
-          <input
-            type="text"
-            name="SearchField"
-            id="searchField"
-            className={style.search}
-            placeholder="Pesquisar um Produto"
-          />
+          <form onSubmit={searchTerm}>
+            <input
+              type="text"
+              name="SearchField"
+              id="searchField"
+              className={style.search}
+              placeholder="Pesquisar um Produto"
+            />
+            <button>Procurar</button>
+          </form>
         </div>
         <div className={style.categories}>
           <ul>
@@ -52,10 +70,7 @@ const Navbar = () => {
               <li></li>
             ) : (
               <li>
-                <Link href="/account/listas-de-compras">
-                  {" "}
-                  Lista de Compras{" "}
-                </Link>
+                <Link href="/listas-de-compras"> Lista de Compras </Link>
               </li>
             )}
           </ul>
@@ -75,7 +90,6 @@ const Navbar = () => {
             </div>
           ) : (
             <div className={style.userInfoText}>
-              <Link href="/account/meus-dados">Meus dados</Link>
               <button onClick={() => signOut()}>Logout</button>
             </div>
           )}

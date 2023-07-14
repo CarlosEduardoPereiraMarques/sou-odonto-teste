@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import LoginAlert from "@/components/loginAlert";
 
-
 const UserBuylist = () => {
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -31,7 +30,7 @@ const UserBuylist = () => {
           user_email: session.data.user.email,
         }),
       });
-      res.status === 201 && router.push("/account/listas-de-compras/");
+      res.status === 201 && router.push("/listas-de-compras/");
     } catch (err) {
       setError(err);
       console.log(err);
@@ -42,9 +41,9 @@ const UserBuylist = () => {
       <div className={style.breadcrumb}>
         <Link href="/register">Home</Link>
         <span className={style.divider}>/</span>
-        <Link href="/accounts/meus-dados">Minha conta</Link>
-        <span className={style.divider}>/</span>
-        <span className={style.divider}>Listas de Compras</span>
+        <Link href="/listas-de-compras" className={style.divider}>
+          Listas de Compras
+        </Link>
         <span className={style.divider}>/</span>
         <span className={style.active}>Criar Lista</span>
       </div>
