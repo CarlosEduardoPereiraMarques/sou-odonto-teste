@@ -12,7 +12,7 @@ const EditProductInList = ({ product, onUpdate, onClose, buylist }) => {
   };
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
     try {
       const res = await fetch("/api/buylist-products", {
         method: "PUT",
@@ -40,7 +40,6 @@ const EditProductInList = ({ product, onUpdate, onClose, buylist }) => {
   const handleEditToggle = () => {
     setEditingEnabled(!editingEnabled);
   };
-
 
   return (
     <div>

@@ -15,7 +15,7 @@ const ProductData = ({ buylistProduct }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          listId: buylistProduct._id
+          listId: buylistProduct._id,
         }),
       });
       if (res.status === 201) {
@@ -65,7 +65,12 @@ const ProductData = ({ buylistProduct }) => {
   return (
     <div>
       <h2>Dados do Produto:</h2>
-      <Image width={200} height={200} src={productData.img} alt={productData.name} />
+      <Image
+        width={200}
+        height={200}
+        src={productData.img}
+        alt={productData.name}
+      />
       <p>Nome: {productData.name}</p>
       <p>Marca: {productData.manufacturer}</p>
       <p>Quantidade: {buylistProduct.amount}</p>

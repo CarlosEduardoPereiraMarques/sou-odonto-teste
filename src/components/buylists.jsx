@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const BuyLists = ({ session }) => {
@@ -46,11 +46,13 @@ const BuyLists = ({ session }) => {
     <div>
       {buylists.map((buylist) => (
         <div key={buylist._id}>
-          <Link href={{
-                  pathname: `/listas-de-compras/${buylist._id}`,
-                  query: { listId: buylist._id },
-                }}>
-              {buylist.name} - {buylist.description}
+          <Link
+            href={{
+              pathname: `/listas-de-compras/${buylist._id}`,
+              query: { listId: buylist._id },
+            }}
+          >
+            {buylist.name} - {buylist.description}
           </Link>
         </div>
       ))}

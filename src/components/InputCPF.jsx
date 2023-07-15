@@ -76,7 +76,7 @@ const InputCPF = ({ onChange }) => {
       try {
         const res = await fetch(`/api/users/${value.replace(/[^\d]/g, "")}`);
         const data = await res.json();
-        console.log(data)
+        console.log(data);
         if (Array.isArray(data) && data.length !== 0) {
           setError("CPF já cadastrado");
         } else {

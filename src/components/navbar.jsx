@@ -1,8 +1,8 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import style from "@/app/styles/navbar.module.css";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
 const links = [
@@ -37,21 +37,20 @@ const Navbar = () => {
   const session = useSession();
   const router = useRouter();
   const [showError, setShowError] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   async function searchTerm(event) {
     event.preventDefault();
     const searchTerm = event.target[0].value;
-    if(searchTerm === "") {
+    if (searchTerm === "") {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
       }, 1500);
-
     } else {
       try {
         router.push(`/products/${searchTerm}`);
-        setSearchInput('')
+        setSearchInput("");
       } catch (error) {
         console.log(error);
       }
@@ -59,9 +58,9 @@ const Navbar = () => {
   }
 
   const Logout = () => {
-    signOut()
-    router.push('/')
-  }
+    signOut();
+    router.push("/");
+  };
 
   return (
     <header className={style.navbar}>
@@ -72,7 +71,9 @@ const Navbar = () => {
               type="text"
               name="SearchField"
               id="searchField"
-              className={`${style.searchInput} ${showError ? style.searchInputError : ''}`}
+              className={`${style.searchInput} ${
+                showError ? style.searchInputError : ""
+              }`}
               placeholder="Pesquisar um Produto"
               value={searchInput}
               onChange={(event) => setSearchInput(event.target.value)}
@@ -111,7 +112,9 @@ const Navbar = () => {
             </div>
           ) : (
             <div className={style.userInfoText}>
-              <button onClick={Logout} className={style.logoutButton}>Logout</button>
+              <button onClick={Logout} className={style.logoutButton}>
+                Logout
+              </button>
             </div>
           )}
         </div>
