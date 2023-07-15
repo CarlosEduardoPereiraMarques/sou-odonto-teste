@@ -3,11 +3,11 @@ import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
-  const { searchTerm } = params;
+  const { search_term } = params;
 
   try {
     await connectDB();
-    const regex = new RegExp(searchTerm, "i");
+    const regex = new RegExp(search_term, "i");
     const products = await Products.find({
       name: { $regex: regex },
     });

@@ -14,11 +14,11 @@ const handler = NextAuth({
         try {
           const user = await User.findOne({ email: credentials.email });
           if (user) {
-            const isPasswordCorrect = await bcrypt.compare(
+            const is_password_correct = await bcrypt.compare(
               credentials.password,
               user.password
             );
-            if (isPasswordCorrect) {
+            if (is_password_correct) {
               return user;
             } else {
               throw new Error("Senha Incorreta!");

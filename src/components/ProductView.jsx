@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const ProductView = ({ product }) => {
@@ -25,7 +26,7 @@ const ProductView = ({ product }) => {
   };
   return (
     <div>
-      {product.name} - R${formatPrice(product.price)}
+        {product.name} - R${formatPrice(product.price)}
     </div>
   );
 };

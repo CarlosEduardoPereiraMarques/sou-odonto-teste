@@ -1,11 +1,11 @@
-import BuylistProducts from "@/models/BuylistProducts";
+import buylist_products from "@/models/BuylistProducts";
 import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
   try {
     await connectDB();
-    const buylists = await BuylistProducts.find();
+    const buylists = await buylist_products.find();
     return new NextResponse(JSON.stringify(buylists), { status: 200 });
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
@@ -16,16 +16,15 @@ export const POST = async (request) => {
   const { user_id, buylist_id, product_id, amount, obligatory_item } =
     await request.json();
   await connectDB();
-  const newBuylistProducts = new BuylistProducts({
+  const new_buylist_products = new buylist_products({
     user_id: user_id.toString(),
     list_id: buylist_id.toString(),
     product_id: product_id,
     amount: amount,
     obligatory_item: obligatory_item,
   });
-  console.log(newBuylistProducts);
   try {
-    await newBuylistProducts.save();
+    await new_buylist_products.save();
     return new NextResponse("BuylistProduct has been created", {
       status: 201,
     });
@@ -41,7 +40,7 @@ export const PUT = async (request) => {
   try {
     await connectDB();
 
-    const updatedProduct = await BuylistProducts.findByIdAndUpdate(
+    const updated_product = await buylist_products.findByIdAndUpdate(
       list_id,
       { $set: { amount: amount, obligatory_item: obligatory_item } },
       { new: true }
@@ -59,12 +58,12 @@ export const PUT = async (request) => {
 };
 
 export const DELETE = async (request) => {
-  const { listId } = await request.json();
+  const { listId: list_id } = await request.json();
   try {
     await connectDB();
-    const deletedList = await BuylistProducts.findByIdAndDelete(listId);
+    const deleted_list = await buylist_products.findByIdAndDelete(list_id);
 
-    if (!deletedList) {
+    if (!deleted_list) {
       return new NextResponse("Lista de compras não encontrada", {
         status: 404,
       });

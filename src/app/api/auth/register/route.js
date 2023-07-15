@@ -6,16 +6,16 @@ import { NextResponse } from "next/server";
 export const POST = async (request) => {
   const { name, cpf, email, password } = await request.json();
   await connectDB();
-  const hashedPassword = await bcrypt.hash(password, 5);
-  const newUser = new User({
+  const hashed_password = await bcrypt.hash(password, 5);
+  const new_user = new User({
     name,
     cpf,
     email,
-    password: hashedPassword,
+    password: hashed_password,
   });
 
   try {
-    await newUser.save();
+    await new_user.save();
     return new NextResponse("User has been created", {
       status: 201,
     });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductView from "./ProductView";
+import Link from "next/link";
 
 async function getData(id) {
   const searchResult = await fetch(`/api/search/${id}`);
@@ -47,7 +48,9 @@ const SearchResults = ({ searchTerm }) => {
   return (
     <div>
       {results.map((result) => (
-        <ProductView key={result.id} product={result} />
+        <Link href={`/product/${result.id}`} key={result.id}>
+          <ProductView product={result} />
+        </Link>
       ))}
     </div>
   );

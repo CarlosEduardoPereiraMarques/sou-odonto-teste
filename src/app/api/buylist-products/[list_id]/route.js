@@ -1,13 +1,13 @@
-import BuylistDatas from "@/models/Buylist";
-import BuylistProducts from "@/models/BuylistProducts";
+import buylist_datas from "@/models/Buylist";
+import buylist_products from "@/models/BuylistProducts";
 import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
-  const { listId } = params;
+  const { list_id } = params;
   try {
     await connectDB();
-    const products = await BuylistProducts.find({ list_id: listId });
+    const products = await buylist_products.find({ list_id: list_id });
     return new NextResponse(JSON.stringify(products), { status: 200 });
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
@@ -20,26 +20,26 @@ export const PUT = async (request, { params }) => {
 
   try {
     await connectDB();
-    const existingList = await BuylistDatas.findById(list_id);
-    if (!existingList) {
+    const existing_list = await buylist_datas.findById(list_id);
+    if (!existing_list) {
       return new NextResponse("Lista de compras não encontrada", {
         status: 404,
       });
     }
-    const updatedFields = {};
+    const updated_fields = {};
     if (list_name !== "") {
-      updatedFields.name = list_name;
+      updated_fields.name = list_name;
     }
     if (list_description !== "") {
-      updatedFields.description = list_description;
+      updated_fields.description = list_description;
     }
-    const updatedList = await BuylistDatas.findByIdAndUpdate(
+    const updated_list = await buylist_datas.findByIdAndUpdate(
       list_id,
-      updatedFields,
+      updated_fields,
       { new: true }
     );
 
-    return new NextResponse(JSON.stringify(updatedList), { status: 200 });
+    return new NextResponse(JSON.stringify(updated_list), { status: 200 });
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
   }
@@ -50,9 +50,9 @@ export const DELETE = async (request, { params }) => {
 
   try {
     await connectDB();
-    const deletedList = await BuylistDatas.findByIdAndDelete(list_id);
+    const deleted_list = await buylist_datas.findByIdAndDelete(list_id);
 
-    if (!deletedList) {
+    if (!deleted_list) {
       return new NextResponse("Lista de compras não encontrada", {
         status: 404,
       });
