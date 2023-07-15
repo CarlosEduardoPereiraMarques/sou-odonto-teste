@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Login = () => {
   const session = useSession();
@@ -34,6 +35,7 @@ const Login = () => {
         {error && <p>{error}</p>}
         <button onClick={() => signIn("credentials")}>Acessar</button>
       </form>
+      <Link href="/register">Não tem uma conta? Cadastre-se</Link>
     </div>
   );
 };

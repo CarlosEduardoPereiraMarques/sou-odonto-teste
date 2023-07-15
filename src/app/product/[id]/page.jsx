@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import ToggleList from "@/components/ToggleList";
@@ -41,6 +41,7 @@ const Checkbox = ({ label, checked, onChange }) => {
 
 const ProductPage = () => {
   const session = useSession();
+  const router = useRouter()
   const pathname = usePathname();
   const id = pathname.split("/").pop();
   const [product, setProduct] = useState(null);
@@ -50,7 +51,7 @@ const ProductPage = () => {
   const [buylists, setBuylists] = useState([]);
   const [error, setError] = useState(null);
   const [addBuylist, setAddBuylist] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(""); // Adicionado
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -172,11 +173,16 @@ const ProductPage = () => {
         label="Item obrigatório"
         checked={isRequired}
         onChange={handleCheckboxChange}
-      />
-      <ToggleList buylists={buylists} onItemClick={handleItemClick} />
-      {addBuylist && <AddBuylist setAddMode={setAddBuylist} user_email={session.data.user.email} />}
-      {successMessage && <div>{successMessage}</div>}
-      {error && <div>{error}</div>}
+      /> {session.status === "authenticated" ? (
+        <>
+          <ToggleList buylists={buylists} onItemClick={handleItemClick} />
+          {addBuylist && <AddBuylist setAddMode={setAddBuylist} user_email={session.data.user.email} />}
+          {successMessage && <div>{successMessage}</div>}
+          {error && <div>{error}</div>}
+        </>
+      ) : (
+        <button onClick={() => router.push("/login")}>Faça o login para adicionar a uma lista de compras</button>
+      )}
     </div>
   );
 };
