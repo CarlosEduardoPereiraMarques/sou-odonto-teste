@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EditListForm = ({ onSubmit }) => {
+const EditListForm = ({ onSubmit, goBack }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -23,7 +23,8 @@ const EditListForm = ({ onSubmit }) => {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Descrição da lista"
       />
-      <button type="submit">Salvar</button>
+      <button>Salvar</button>
+      <button onClick={goBack}>Voltar</button>
     </form>
   );
 };

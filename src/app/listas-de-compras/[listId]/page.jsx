@@ -5,11 +5,12 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const SingleProduct = ({ params }) => {
+const SingleBuylist = ({ params }) => {
   const session = useSession();
   const route = useRouter();
   const [editMode, setEditMode] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [error, setError] = useState(null);
 
   const deleteList = async () => {
@@ -45,13 +46,15 @@ const SingleProduct = ({ params }) => {
     }
   };
 
+
+
   if (session.status === "authenticated") {
     return (
       <div>
         <div>
           <Buylist listId={params.listId} />
           {editMode ? (
-            <EditBuylist listId={params.listId} />
+            <EditBuylist listId={params.listId} setEditMode={setEditMode}/>
           ) : (
             <button onClick={handleEditClick}>Editar Dados da Lista</button>
           )}
@@ -73,4 +76,4 @@ const SingleProduct = ({ params }) => {
   }
 };
 
-export default SingleProduct;
+export default SingleBuylist;

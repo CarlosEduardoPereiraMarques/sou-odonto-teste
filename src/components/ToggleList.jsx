@@ -13,7 +13,7 @@ const ToggleList = ({ buylists, onItemClick }) => {
   
     return (
       <div>
-        <button onClick={toggleList}>Toggle List</button>
+        <button onClick={toggleList}>Adicionar à lista</button>
         {showList && (
           <ul>
             {buylists.map((item) => (

@@ -1,0 +1,12 @@
+.input {
+    border-color: #0000ff
+}
+
+.error {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.error::placeholder{
+    color: ff0000;
+}

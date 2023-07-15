@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EditListForm from './EditListForm';
 import { useRouter } from 'next/navigation';
 
-const EditBuylist = ({ listId }) => {
+const EditBuylist = ({ listId, setEditMode }) => {
   const [error, setError] = useState(null);
   const router = useRouter()
   
@@ -28,10 +28,14 @@ const EditBuylist = ({ listId }) => {
       console.log(err);
     }
   };
+  const handleGoBack = () => {
+    setEditMode(false);
+    setRefreshKey((prevKey) => prevKey + 1);
+  };
   
   return (
     <div>
-      <EditListForm onSubmit={EditListData} />
+      <EditListForm onSubmit={EditListData} goBack={handleGoBack} />
       {error && <div>Error: {error.message}</div>}
     </div>
   );
