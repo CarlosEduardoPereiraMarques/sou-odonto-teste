@@ -4,6 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductView from "@/components/ProductView";
 
+export const metadata = {
+  title: "Produtos - Dentística",
+  description: "Categoria dentística",
+};
+
+
 const Dentistry = () => {
   const [products, setProducts] = useState([]);
 

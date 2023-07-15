@@ -4,6 +4,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Login",
+  description: "Faça seu Login",
+};
+
+
 const Login = () => {
   const session = useSession();
   const router = useRouter();

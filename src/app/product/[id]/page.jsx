@@ -158,6 +158,8 @@ const ProductPage = () => {
     }
   };
 
+
+
   return (
     <div>
       <h1>{product.name}</h1>

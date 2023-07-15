@@ -8,6 +8,12 @@ import LoginAlert from "@/components/LoginAlert";
 import BuyLists from "@/components/Buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";
 
+export const metadata = {
+  title: "Lista de Compras",
+  description: "Lista de Compras",
+};
+
+
 const UserBuylist = () => {
   const router = useRouter();
   const session = useSession();

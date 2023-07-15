@@ -4,6 +4,11 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Buylist from '@/components/Buylist';
 
+export const metadata = {
+  title: "Lista de compras",
+  description: "Lista de compras",
+};
+
 
 export default function Page({ params }) {
   const [buylistProducts, setBuylistProducts] = useState([]);

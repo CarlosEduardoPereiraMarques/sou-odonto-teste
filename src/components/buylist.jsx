@@ -78,10 +78,6 @@ const Buylist = ({ listId, isBuylistCreator }) => {
       <h2>Produtos:</h2>
       
       {buylistProducts.map(product => (
-        
-        // <div key={product.id}>
-        //   {product.name} - {product.amount} - {product.obligatory_item ? 'Obrigatório' : 'Opcional'} 
-        // </div>
         <li key={product._id}>
           <ProductData buylistProduct={product} isBuylistCreator={isBuylistCreator} />
         </li>

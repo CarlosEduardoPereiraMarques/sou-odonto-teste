@@ -6,6 +6,12 @@ import InputCPF from "@/components/InputCPF";
 import InputEmail from "@/components/InputEmail";
 import InputPassword from "@/components/InputPassword";
 
+export const metadata = {
+  title: "Faça o seu Cadastro",
+  description: "Faça o seu Cadastro",
+};
+
+
 const Register = () => {
   const [error, setError] = useState(null);
   const [cpfValue, setCPFValue] = useState("");
