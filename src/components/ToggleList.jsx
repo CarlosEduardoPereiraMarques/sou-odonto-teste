@@ -17,11 +17,11 @@ const ToggleList = ({ buylists, onItemClick }) => {
       {showList && (
         <ul>
           {buylists.map((item) => (
-            <li key={item.id} onClick={() => handleItemClick(item)}>
+            <li key={item._id} onClick={() => handleItemClick(item)}>
               {item.name}
             </li>
           ))}
-          <li key="create-list" onClick={() => handleItemClick(true)}>
+          <li  onClick={() => handleItemClick(true)}>
             Criar nova lista de compras
           </li>
         </ul>

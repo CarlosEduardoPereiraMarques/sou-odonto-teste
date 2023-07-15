@@ -1,10 +1,11 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import ToggleList from "@/components/ToggleList";
 import QuantityCounter from "@/components/QuantityCounter";
+import AddBuylist from "@/components/AddBuylist";
 
 async function getProductData(id) {
   try {
@@ -21,9 +22,7 @@ async function getProductData(id) {
 
 async function getBuylists(userEmail) {
   try {
-    const response = await fetch(
-      `/api/user/buylist/${userEmail}`
-    );
+    const response = await fetch(`/api/user/buylist/${userEmail}`);
     return await response.json();
   } catch (error) {
     console.log(error);
@@ -50,6 +49,8 @@ const ProductPage = () => {
   const [isRequired, setIsRequired] = useState(false);
   const [buylists, setBuylists] = useState([]);
   const [error, setError] = useState(null);
+  const [addBuylist, setAddBuylist] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(""); // Adicionado
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,7 +98,7 @@ const ProductPage = () => {
     if (priceString.includes(",")) {
       return priceString;
     }
-    
+
     if (priceString.includes(".")) {
       priceString = priceString.replace(".", ",");
       const decimalPart = priceString.split(",")[1];
@@ -120,7 +121,7 @@ const ProductPage = () => {
 
   const handleItemClick = async (item) => {
     if (item === true) {
-      console.log("null");
+      setAddBuylist(true);
     } else {
       await addProduct(item);
     }
@@ -141,6 +142,15 @@ const ProductPage = () => {
           obligatory_item: isRequired,
         }),
       });
+      if (res.ok) {
+        setSuccessMessage("Item adicionado com sucesso!");
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
+      } else {
+        throw new Error("Não foi possível adicionar a lista de compras");
+      }
+      setError(null);
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -152,12 +162,7 @@ const ProductPage = () => {
       <h1>{product.name}</h1>
       <p>R${formatPrice(product.price)}</p>
       <p>Fabricante: {product.manufacturer}</p>
-      <Image
-        src={`${product.img}`}
-        alt="Imagem do Produto"
-        width={300}
-        height={79}
-      />
+      <Image src={`${product.img}`} alt="Imagem do Produto" width={300} height={79} />
       <QuantityCounter
         value={selectedQuantity}
         onChange={setSelectedQuantity}
@@ -168,11 +173,9 @@ const ProductPage = () => {
         checked={isRequired}
         onChange={handleCheckboxChange}
       />
-      <ToggleList
-        key={product.id}
-        buylists={buylists}
-        onItemClick={handleItemClick}
-      />
+      <ToggleList buylists={buylists} onItemClick={handleItemClick} />
+      {addBuylist && <AddBuylist setAddMode={setAddBuylist} user_email={session.data.user.email} />}
+      {successMessage && <div>{successMessage}</div>}
       {error && <div>{error}</div>}
     </div>
   );
