@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EditProductInList from "./EditProductInList";
 
-const ProductData = ({ buylistProduct }) => {
+const ProductData = ({ buylistProduct, isBuylistCreator }) => {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  
   const deleteProduct = async () => {
     try {
       const res = await fetch("/api/buylist-products", {
@@ -43,7 +44,6 @@ const ProductData = ({ buylistProduct }) => {
       console.log(err);
     }
   };
-
   useEffect(() => {
     if (buylistProduct) {
       getProductData(buylistProduct.product_id);
@@ -75,23 +75,44 @@ const ProductData = ({ buylistProduct }) => {
       <p>Marca: {productData.manufacturer}</p>
       <p>Quantidade: {buylistProduct.amount}</p>
       <p>Obrigatório: {buylistProduct.obligatory_item ? "Sim" : "Não"}</p>
-      {isEditing ? (
-        <EditProductInList
-          product={productData}
-          onUpdate={handleUpdateProduct}
-          onClose={handleToggleEditing}
-          buylist={buylistProduct}
-        />
-      ) : (
-        <button onClick={handleToggleEditing}>Editar</button>
-      )}
-      <button onClick={() => setShowConfirmation(true)}>
-        Excluir item da lista?
-      </button>
-      {showConfirmation && (
+      {isBuylistCreator && (
         <div>
-          <button onClick={deleteProduct}>Sim</button>
-          <button onClick={() => setShowConfirmation(false)}>Não</button>
+          {isEditing ? (
+            <div>
+              <EditProductInList
+                product={productData}
+                onUpdate={handleUpdateProduct}
+                onClose={handleToggleEditing}
+                buylist={buylistProduct}
+              />
+              <button onClick={() => setShowConfirmation(true)}>
+                Excluir item da lista?
+              </button>
+              {showConfirmation && (
+                <div>
+                  <button onClick={deleteProduct}>Sim</button>
+                  <button onClick={() => setShowConfirmation(false)}>
+                    Não
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div>
+              <button onClick={handleToggleEditing}>Editar</button>
+              <button onClick={() => setShowConfirmation(true)}>
+                Excluir item da lista?
+              </button>
+              {showConfirmation && (
+                <div>
+                  <button onClick={deleteProduct}>Sim</button>
+                  <button onClick={() => setShowConfirmation(false)}>
+                    Não
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 const EditBuylist = ({ listId, setEditMode }) => {
   const [error, setError] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
   const router = useRouter();
 
   const EditListData = async (data) => {

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
@@ -7,17 +7,19 @@ import Link from "next/link";
 const Login = () => {
   const session = useSession();
   const router = useRouter();
-  const [error, setError] = useState(null);  
+  const [error, setError] = useState(null);
   const searchParams = useSearchParams();
-  if (session.status === "authenticated") {
-    router.push("/");
-  }
+
   useEffect(() => {
     const error = searchParams.get('error');
     if (error) {
-      setError(error); 
+      setError(error);
     }
-  }, [searchParams]);
+
+    if (session.status === "authenticated") {
+      router.push("/");
+    }
+  }, [searchParams, session]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const Login = () => {
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Senha" />
         {error && <p>{error}</p>}
-        <button onClick={() => signIn("credentials")}>Acessar</button>
+        <button>Acessar</button>
       </form>
       <Link href="/register">Não tem uma conta? Cadastre-se</Link>
     </div>
