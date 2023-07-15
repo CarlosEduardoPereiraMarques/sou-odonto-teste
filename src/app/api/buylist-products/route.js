@@ -36,9 +36,45 @@ export const POST = async (request) => {
 };
 
 export const PUT = async (request) => {
-  //atualizar as informações dos produtos
+  const {list_id, amount, obligatory_item} = await request.json();
+  try {
+    await connectDB();
+
+    const updatedProduct = await BuylistProducts.findByIdAndUpdate(
+      list_id,
+      { $set: { amount: amount, obligatory_item:obligatory_item }},
+      { new: true }
+    );
+    return {
+      statusCode: 200,
+      body: "Produto atualizado com sucesso",
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: "Erro ao atualizar o produto",
+    };
+  }
 };
 
+
 export const DELETE = async (request) => {
-  //deletar produtos
+  const { listId } = await request.json();
+  try {
+    await connectDB();
+    const deletedList = await BuylistProducts.findByIdAndDelete(listId);
+
+    if (!deletedList) {
+      return new NextResponse("Lista de compras não encontrada", {
+        status: 404,
+      });
+    }
+
+    return new NextResponse("Lista de compras excluída com sucesso", {
+      status: 200,
+    });
+  } catch (error) {
+    return new NextResponse("Erro no banco de dados", { status: 500 });
+  }
 };
+

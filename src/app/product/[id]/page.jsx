@@ -8,7 +8,7 @@ import QuantityCounter from "@/components/QuantityCounter";
 
 async function getProductData(id) {
   try {
-    const response = await fetch(`http://localhost:3000/api/products/${id}`);
+    const response = await fetch(`/api/products/${id}`);
     if (!response.ok) {
       throw new Error("Não foi possível obter os dados do produto");
     }
@@ -22,7 +22,7 @@ async function getProductData(id) {
 async function getBuylists(userEmail) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/user/buylist/${userEmail}`
+      `/api/user/buylist/${userEmail}`
     );
     return await response.json();
   } catch (error) {
@@ -49,6 +49,7 @@ const ProductPage = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [isRequired, setIsRequired] = useState(false);
   const [buylists, setBuylists] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,6 +77,7 @@ const ProductPage = () => {
           }
         } catch (error) {
           console.log(error);
+          setError(error.message);
         } finally {
           setLoading(false);
         }
@@ -134,26 +136,24 @@ const ProductPage = () => {
         body: JSON.stringify({
           user_id: item.user_id,
           buylist_id: item._id,
-          product_id: product[0].id,
+          product_id: product.id,
           amount: selectedQuantity,
           obligatory_item: isRequired,
         }),
       });
-      if (res.status === 201) {
-      }
     } catch (err) {
-      setError(err);
+      setError(err.message);
       console.log(err);
     }
   };
 
   return (
     <div>
-      <h1>{product[0].name}</h1>
-      <p>R${formatPrice(product[0].price)}</p>
-      <p>Fabricante: {product[0].manufacturer}</p>
+      <h1>{product.name}</h1>
+      <p>R${formatPrice(product.price)}</p>
+      <p>Fabricante: {product.manufacturer}</p>
       <Image
-        src={`${product[0].img}`}
+        src={`${product.img}`}
         alt="Imagem do Produto"
         width={300}
         height={79}
@@ -169,10 +169,11 @@ const ProductPage = () => {
         onChange={handleCheckboxChange}
       />
       <ToggleList
-        key={product[0].id}
+        key={product.id}
         buylists={buylists}
         onItemClick={handleItemClick}
       />
+      {error && <div>{error}</div>}
     </div>
   );
 };

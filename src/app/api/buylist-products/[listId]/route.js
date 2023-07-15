@@ -1,13 +1,13 @@
 import BuylistDatas from "@/models/Buylist";
-import User from "@/models/User";
+import BuylistProducts from "@/models/BuylistProducts";
 import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
-  const { list_id } = params;
+  const { listId } = params;
   try {
     await connectDB();
-    const products = await BuylistDatas.find({ _id: list_id });
+    const products = await BuylistProducts.find({ list_id: listId });
     return new NextResponse(JSON.stringify(products), { status: 200 });
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
