@@ -38,8 +38,7 @@ const SingleProduct = ({ params }) => {
   const getBuylistProducts = async () => {
     try {
       const res = await fetch(`/api/buylist-products/${params.listId}`);
-      const data = await res.json();
-      return data;
+      return await res.json();
     } catch (err) {
       setError(err);
       console.log(err);
