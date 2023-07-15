@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import SearchResults from "@/components/searchResults";
+import SearchResults from "@/components/SearchResults";
 import { usePathname } from 'next/navigation';
 
 const SearchTerm = () => {

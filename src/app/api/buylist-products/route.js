@@ -13,21 +13,18 @@ export const GET = async (request) => {
 };
 
 export const POST = async (request) => {
-  const { user_email, buylist_id, product_id, amount, obligatory_item } =
-    await request.json();
+  const { user_id, buylist_id, product_id, amount, obligatory_item } = await request.json();
   await connectDB();
-  const user = await BuylistProducts.findOne({ user_email: user_email });
   const newBuylistProducts = new BuylistProducts({
-    user_id: user._id.toString(),
+    user_id: user_id.toString(),
     list_id: buylist_id.toString(),
     product_id: product_id,
-    amount,
-    obligatory_item,
+    amount: amount,
+    obligatory_item: obligatory_item,
   });
-
+  console.log(newBuylistProducts);
   try {
     await newBuylistProducts.save();
-    console.log("BuylistProduct has been created");
     return new NextResponse("BuylistProduct has been created", {
       status: 201,
     });

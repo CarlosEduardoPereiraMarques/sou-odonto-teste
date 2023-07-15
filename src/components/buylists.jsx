@@ -50,7 +50,7 @@ const BuyLists = ({ session }) => {
                   pathname: `/listas-de-compras/${buylist._id}`,
                   query: { listId: buylist._id },
                 }}>
-              {buylist.name}
+              {buylist.name} - {buylist.description}
           </Link>
         </div>
       ))}

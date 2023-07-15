@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 async function getData(id) {
   const searchResult = await fetch(`/api/search/${id}`);
   const results = await searchResult.json();
-  console.log(results);
-
+  
   if (!searchResult.ok) {
     throw new Error("Não foi possível obter os dados");
   }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import EditListForm from './editListForm';
+import EditListForm from './EditListForm';
 import { useRouter } from 'next/navigation';
 
-const EditBuyList = ({ listId }) => {
+const EditBuylist = ({ listId }) => {
   const [error, setError] = useState(null);
+  const router = useRouter()
   
-  const editListData = async (data) => {
-    const router = useRouter()
+  const EditListData = async (data) => {
     try {
       const res = await fetch(`/api/buylists/${listId}`, {
         method: 'PUT',
@@ -31,10 +31,10 @@ const EditBuyList = ({ listId }) => {
   
   return (
     <div>
-      <EditListForm onSubmit={editListData} />
+      <EditListForm onSubmit={EditListData} />
       {error && <div>Error: {error.message}</div>}
     </div>
   );
 };
 
-export default EditBuyList;
+export default EditBuylist;

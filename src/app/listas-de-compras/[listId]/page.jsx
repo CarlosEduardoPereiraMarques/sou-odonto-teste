@@ -1,17 +1,17 @@
 "use client";
-import Buylist from "@/components/buylist";
-import EditBuyList from "@/components/editBuyList";
+import Buylist from "@/components/Buylist";
+import EditBuylist from "@/components/EditBuylist";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-const page = ({params}) => {
+const SingleProduct = ({ params }) => {
   const session = useSession();
-  const route = useRouter()
+  const route = useRouter();
   const [editMode, setEditMode] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [error, setError] = useState(null);
-  
+
   const deleteList = async () => {
     try {
       const res = await fetch(`/api/buylists/${params.listId}`, {
@@ -21,59 +21,57 @@ const page = ({params}) => {
         },
         body: JSON.stringify({
           list_id: params.listId,
-        })
+        }),
       });
       res.status === 201;
-      route.push('/listas-de-compras')
+      route.push("/listas-de-compras");
     } catch (err) {
       setError(err);
       console.log(err);
     }
   };
+
   const handleEditClick = () => {
     setEditMode(true);
-  };  
+  };
 
   const getBuylistProducts = async () => {
     try {
       const res = await fetch(`/api/buylist-products/${params.listId}`);
       const data = await res.json();
-      console.log(data);
       return data;
     } catch (err) {
       setError(err);
       console.log(err);
     }
-  
-  }
+  };
 
-  if (session.status === 'authenticated'){
-    
+  if (session.status === "authenticated") {
     return (
       <div>
         <div>
-        <Buylist listId={params.listId} />
-        {editMode ? (
-          <EditBuyList listId={params.listId} />
-        ) : (
-          <button onClick={handleEditClick}>Editar Dados da Lista</button>
-        )}
-      </div>
-      <div>
-      <button onClick={() => setShowConfirmation(true)}>Excluir Lista</button>
-      {showConfirmation && (
-        <div>
-          <button onClick={deleteList}>Sim</button>
-          <button onClick={() => setShowConfirmation(false)}>Não</button>
+          <Buylist listId={params.listId} />
+          {editMode ? (
+            <EditBuylist listId={params.listId} />
+          ) : (
+            <button onClick={handleEditClick}>Editar Dados da Lista</button>
+          )}
         </div>
-      )}
-      <ul>
-
-      </ul>
-    </div>
+        <div>
+          <button onClick={() => setShowConfirmation(true)}>
+            Excluir Lista
+          </button>
+          {showConfirmation && (
+            <div>
+              <button onClick={deleteList}>Sim</button>
+              <button onClick={() => setShowConfirmation(false)}>Não</button>
+            </div>
+          )}
+          <ul></ul>
+        </div>
       </div>
     );
   }
 };
 
-export default page;
+export default SingleProduct;

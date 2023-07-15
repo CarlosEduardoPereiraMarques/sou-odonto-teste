@@ -1,8 +1,8 @@
 import "./styles/globals.css";
 import style from "@/app/styles/container.module.css";
 import Navbar from "@/components/Navbar";
-import AuthProvider from "@/components/authProvider";
-import Footer from "@/components/footer";
+import AuthProvider from "@/components/AuthProvider";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }) {
   return (

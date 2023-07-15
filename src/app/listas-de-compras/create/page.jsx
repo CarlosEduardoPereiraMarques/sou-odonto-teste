@@ -4,7 +4,7 @@ import Link from "next/link";
 import style from "@/app/styles/meus-dados.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import LoginAlert from "@/components/loginAlert";
+import LoginAlert from "@/components/LoginAlert";
 
 const UserBuylist = () => {
   const [error, setError] = useState(null);
