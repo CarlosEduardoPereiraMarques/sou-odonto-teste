@@ -1,10 +1,10 @@
-import BuylistDatas from "@/models/Buylist"
+import BuylistDatas from "@/models/Buylist";
 import User from "@/models/User";
 import connectDB from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
-  const  buylist_id  = params;
+  const { buylist_id } = params;
   try {
     await connectDB();
     const products = await BuylistDatas.find({ _id: buylist_id });
@@ -21,7 +21,7 @@ export const POST = async (request) => {
   const newBuylist = new BuylistDatas({
     user_id: user._id.toString(),
     name,
-    description,    
+    description,
   });
 
   try {

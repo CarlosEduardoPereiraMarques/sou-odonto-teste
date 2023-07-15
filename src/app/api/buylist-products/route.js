@@ -13,7 +13,8 @@ export const GET = async (request) => {
 };
 
 export const POST = async (request) => {
-  const { user_id, buylist_id, product_id, amount, obligatory_item } = await request.json();
+  const { user_id, buylist_id, product_id, amount, obligatory_item } =
+    await request.json();
   await connectDB();
   const newBuylistProducts = new BuylistProducts({
     user_id: user_id.toString(),
@@ -36,13 +37,13 @@ export const POST = async (request) => {
 };
 
 export const PUT = async (request) => {
-  const {list_id, amount, obligatory_item} = await request.json();
+  const { list_id, amount, obligatory_item } = await request.json();
   try {
     await connectDB();
 
     const updatedProduct = await BuylistProducts.findByIdAndUpdate(
       list_id,
-      { $set: { amount: amount, obligatory_item:obligatory_item }},
+      { $set: { amount: amount, obligatory_item: obligatory_item } },
       { new: true }
     );
     return {
@@ -56,7 +57,6 @@ export const PUT = async (request) => {
     };
   }
 };
-
 
 export const DELETE = async (request) => {
   const { listId } = await request.json();
@@ -77,4 +77,3 @@ export const DELETE = async (request) => {
     return new NextResponse("Erro no banco de dados", { status: 500 });
   }
 };
-
