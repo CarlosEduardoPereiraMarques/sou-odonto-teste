@@ -16,7 +16,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target[0].value;
-    const cpf = cpfValue;
+    const cpf = cpfValue.replace(/[^\d]/g, "");
     const email = emailValue;
     const password = passwordValue;
     const confirmPassword = e.target[4].value;

@@ -11,10 +11,6 @@ const EditProductInList = ({ product, onUpdate, onClose, buylist }) => {
     setQuantity(value);
   };
 
-  const handleIsRequiredChange = (e) => {
-    setIsRequired(e.target.checked);
-  };
-
   const handleSubmit = async (e) => {
       e.preventDefault();
     try {

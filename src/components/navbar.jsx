@@ -57,6 +57,12 @@ const Navbar = () => {
       }
     }
   }
+
+  const Logout = () => {
+    signOut()
+    router.push('/')
+  }
+
   return (
     <header className={style.navbar}>
       <div className={`${style.column} ${style.searchColumn}`}>
@@ -105,7 +111,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className={style.userInfoText}>
-              <button onClick={() => signOut()} className={style.logoutButton}>Logout</button>
+              <button onClick={Logout} className={style.logoutButton}>Logout</button>
             </div>
           )}
         </div>
