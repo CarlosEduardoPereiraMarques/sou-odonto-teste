@@ -26,8 +26,10 @@ export default function Page({ params }) {
       const response = await fetch("/api/buylist-products/" + params.listId);
       const data = await response.json();
       setBuylistProducts(data);
-      const userEmail = await getUserEmail(data[0].user_id);
-      isBuylistCreator(userEmail);
+      if (data.length !== 0) {
+        const userEmail = await getUserEmail(data[0].user_id);
+        isBuylistCreator(userEmail);
+      }
     };
 
     fetchData();
@@ -53,9 +55,7 @@ export default function Page({ params }) {
   return (
     <>
       {buylistCreator ? (
-        <>
-          <Buylist listId={params.listId} isBuylistCreator={buylistCreator} />
-        </>
+        <Buylist listId={params.listId} isBuylistCreator={buylistCreator} />
       ) : (
         <Buylist listId={params.listId} isBuylistCreator={buylistCreator} />
       )}

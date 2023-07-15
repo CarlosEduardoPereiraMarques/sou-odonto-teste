@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import CopyURL from '@/components/CopyURL';
 import EditBuylist from './EditBuylist';
 import ProductData from './ProductData';
+import { useRouter } from 'next/navigation';
 
 const Buylist = ({ listId, isBuylistCreator }) => {
+  const router = useRouter()
 
   const [buylist, setBuylist] = useState({});
   const [products, setProducts] = useState([]);
@@ -37,20 +39,18 @@ const Buylist = ({ listId, isBuylistCreator }) => {
 
   const deleteList = async () => {
     try {
-      const res = await fetch(`/api/buylists/${params.listId}`, {
+      const res = await fetch(`/api/buylists/${listId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          list_id: params.listId,
+          list_id: listId,
         }),
       });
       if (res.status === 201) {
         router.push("/listas-de-compras");
-      } else {
-        setError("Erro ao excluir lista de compras");
-      }
+      } 
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -66,8 +66,10 @@ const Buylist = ({ listId, isBuylistCreator }) => {
   }
 
   if(error) {
-    return <p>Ocorreu um erro: {error.message}</p>
+    console.log(error)
+    return <p>Não possivel excluir lista</p>
   }
+
   return (
     <div>
       <h1>{buylist.name}</h1>

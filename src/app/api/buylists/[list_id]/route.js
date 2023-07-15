@@ -47,11 +47,9 @@ export const PUT = async (request, { params }) => {
 
 export const DELETE = async (request, { params }) => {
   const { list_id } = params;
-
   try {
     await connectDB();
     const deleted_list = await buylist_datas.findByIdAndDelete(list_id);
-
     if (!deleted_list) {
       return new NextResponse("Lista de compras não encontrada", {
         status: 404,
@@ -59,7 +57,7 @@ export const DELETE = async (request, { params }) => {
     }
 
     return new NextResponse("Lista de compras excluída com sucesso", {
-      status: 200,
+      status: 201,
     });
   } catch (error) {
     return new NextResponse("Erro no banco de dados", { status: 500 });
