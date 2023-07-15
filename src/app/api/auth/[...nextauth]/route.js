@@ -21,10 +21,10 @@ const handler = NextAuth({
             if (isPasswordCorrect) {
               return user;
             } else {
-              throw new Error("Password is incorrect");
+              throw new Error("Senha Incorreta!");
             }
           } else {
-            throw new Error("User not found");
+            throw new Error("Usuário não encontrado");
           }
         } catch (err) {
           throw new Error(err);
