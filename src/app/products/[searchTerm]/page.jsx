@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
 import SearchResults from "@/components/searchResults";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from 'next/navigation';
 
-const SearchTerm = ({ params }) => {
+const SearchTerm = () => {
+  const pathname = usePathname();
+  const searchTerm = pathname.split('/').pop();
   return (
     <div>
-      <SearchResults searchTerm={params.searchTerm} />
+      <SearchResults searchTerm={searchTerm} />
     </div>
   );
 };

@@ -36,10 +36,7 @@ const Navbar = () => {
     event.preventDefault();
     const searchTerm = event.target[0].value;
     try {
-      router.push({
-        pathname: `/products/${searchTerm}`,
-        query: { searchTerm: searchTerm },
-      });
+      router.push(`/products/${searchTerm}`);
     } catch (error) {
       console.log(error);
     }
