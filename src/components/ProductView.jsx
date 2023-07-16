@@ -2,6 +2,8 @@ import React from "react";
 import styles from "@/app/styles/components/ProductView.module.css";
 
 const ProductView = ({ product }) => {
+
+  const truncatedName = product.name.length > 25 ? `${product.name.substring(0, 25)}...` : product.name;
   const formatPrice = (price) => {
     let priceString = String(price);
 
@@ -28,14 +30,14 @@ const ProductView = ({ product }) => {
   return (
     <div className={styles.card}>
       <div>
-        <h2>{product.name}</h2>
+        <h2>{truncatedName}</h2>
         <img
           src={`${product.img}`}
           alt="Imagem do Produto"
           style={{ width: "5rem", height: "5rem" }}
         />
         <p className="price">R${formatPrice(product.price)}</p>
-        <p>{product.manufacturer}</p>
+        <p>Marca: {product.manufacturer}</p>
       </div>
       <button>
         <a href={`/product/${product.id}`}>Ver detalhes</a>

@@ -151,16 +151,17 @@
   }
 }
 
-@media (max-width: 390px){
+@media (max-width: 390px) {
   .searchInput {
-    width: 150;
+    width: 150px;
     font-size: 14px;
     padding: 8px;
   }
 
-
   .searchButton {
     font-size: 14px;
     padding: 8px 12px;
+    margin-top: 10px;
   }
 }
+

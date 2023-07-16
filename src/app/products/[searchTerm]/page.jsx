@@ -9,7 +9,9 @@ const SearchTerm = () => {
   const searchTerm = pathname.split("/").pop();
   return (
     <div className={styles.container}>
-      <SearchResults searchTerm={searchTerm} />
+      <div className={styles.gridContainer}>
+        <SearchResults searchTerm={searchTerm} />
+      </div>
     </div>
   );
 };
