@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
-import style from "@/app/styles/components/Navbar.module.css"
+import styles from "@/app/styles/components/Navbar.module.css";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+
 const links = [
   {
     id: 1,
@@ -34,11 +35,11 @@ const links = [
 
 const Navbar = () => {
   const session = useSession();
-  const router = useRouter();
-  const [showError, setShowError] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const [showError, setShowError] = useState(false);
 
-  async function searchTerm(event) {
+  const searchTerm = (event) => {
     event.preventDefault();
     const searchTerm = event.target[0].value;
     if (searchTerm === "") {
@@ -54,73 +55,78 @@ const Navbar = () => {
         console.log(error);
       }
     }
-  }
+  };
 
-  const logout = () => {
-    setTimeout(async () => {
-      await signOut();
-    }, 1000);
-    router.push("/");
+  const logout = async () => {
+    await signOut();
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <header className={style.navbar}>
-      <div className={`${style.column} ${style.searchColumn}`}>
-        <div className={style.searchForm}>
-          <form onSubmit={searchTerm}>
-            <input
-              type="text"
-              name="SearchField"
-              id="searchField"
-              className={`${style.searchInput} ${
-                showError ? style.searchInputError : ""
-              }`}
-              placeholder="Pesquisar um Produto"
-              value={searchInput}
-              onChange={(event) => setSearchInput(event.target.value)}
-            />
-            <button className={style.searchButton}>Procurar</button>
-          </form>
-        </div>
-        <div className={style.categories}>
-          <ul>
-            {links.map((link) => (
-              <li key={link.id}>
-                <Link href={link.url}>{link.title}</Link>
-              </li>
-            ))}
-            {session.status !== "authenticated" ? (
-              <li></li>
-            ) : (
-              <li>
-                <Link href="/listas-de-compras"> Lista de Compras </Link>
-              </li>
-            )}
-          </ul>
-        </div>
+    <nav className={styles.navbar}>
+      <div className={styles.searchForm}>
+        <form onSubmit={searchTerm}>
+          <input
+            type="text"
+            name="SearchField"
+            id="searchField"
+            className={`${styles.searchInput} ${
+              showError ? styles.searchInputError : ""
+            }`}
+            placeholder="Pesquisar um Produto"
+            value={searchInput}
+            onChange={(event) => setSearchInput(event.target.value)}
+          />
+          <button className={styles.searchButton}>Procurar</button>
+        </form>
       </div>
-      <div className={`${style.column} ${style.userColumn}`}>
-        <div className={style.userInfo}>
-          {session.status === "unauthenticated" ? (
-            <div className={style.userInfoText}>
-              <div className={style.userInfoLogin}>
-                <Link href="/login">Faça o login</Link>
-              </div>
-              <hr className={style.divider} />
-              <div className={style.userInfoRegister}>
-                <Link href="/register">Crie sua conta</Link>
-              </div>
-            </div>
-          ) : (
-            <div className={style.userInfoText}>
-              <button onClick={logout} className={style.logoutButton}>
-                Logout
-              </button>
-            </div>
+      <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
+        <ul>
+          {links.map((link) => (
+            <li key={link.id}>
+              <Link href={link.url} style={{ color: "#FFFFFF" }}>
+                {link.title}
+              </Link>
+            </li>
+          ))}
+          {session.status === "authenticated" && (
+            <li>
+              <Link href="/listas-de-compras" style={{ color: "#FFFFFF" }}>
+                Lista de Compras
+              </Link>
+            </li>
           )}
-        </div>
+          {session.status === "unauthenticated" ? (
+            <>
+              <li>
+                <Link href="/login" style={{ color: "#FFFFFF" }}>
+                  Faça o login
+                </Link>
+              </li>
+              <li>
+                <Link href="/register" style={{ color: "#FFFFFF" }}>
+                  Crie sua conta
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link href="" onClick={logout}>
+                Logout
+              </Link>
+            </li>
+          )}
+        </ul>
       </div>
-    </header>
+      <div className={styles.mobileMenu} onClick={toggleMenu}>
+        <div className={`${styles.bar} ${isOpen ? styles.open : ""}`} />
+        <div className={`${styles.bar} ${isOpen ? styles.open : ""}`} />
+        <div className={`${styles.bar} ${isOpen ? styles.open : ""}`} />
+      </div>
+    </nav>
   );
 };
 
