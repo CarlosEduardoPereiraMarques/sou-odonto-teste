@@ -11,8 +11,11 @@ export const GET = async (request, { params }) => {
     const products = await Products.find({
       name: { $regex: regex },
     });
-
-    return new NextResponse(JSON.stringify(products), { status: 200 });
+    if (products.length === 0) {
+      return new NextResponse("No products found", { status: 404 });
+    } else {
+      return new NextResponse(JSON.stringify(products), { status: 200 });
+    }
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
   }

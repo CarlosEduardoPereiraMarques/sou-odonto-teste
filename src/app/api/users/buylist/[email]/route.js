@@ -8,8 +8,12 @@ export const GET = async (request, { params }) => {
   try {
     await connectDB();
     const user = await User.findOne({ email: email });
-    const products = await buylist_datas.find({ user_id: user._id.toString() });
-    return new NextResponse(JSON.stringify(products), { status: 200 });
+    const buylists = await buylist_datas.find({ user_id: user._id.toString() });
+    if (buylists.length === 0) {
+      return new NextResponse("Sem lista", { status: 404 });
+    } else {
+      return new NextResponse(JSON.stringify(buylists), { status: 200 });
+    }
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
   }

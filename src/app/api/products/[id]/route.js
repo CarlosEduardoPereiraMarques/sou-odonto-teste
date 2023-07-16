@@ -7,7 +7,11 @@ export const GET = async (request, { params }) => {
   try {
     await connectDB();
     const products = await Products.findOne({ id: id });
-    return new NextResponse(JSON.stringify(products), { status: 200 });
+    if (products === null) {
+      return new NextResponse("Produto não encontrado", { status: 404 });
+    } else {
+      return new NextResponse(JSON.stringify(products), { status: 200 });
+    }
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
   }

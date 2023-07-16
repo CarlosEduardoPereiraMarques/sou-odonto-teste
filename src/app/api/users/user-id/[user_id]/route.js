@@ -9,6 +9,6 @@ export const GET = async (request, { params }) => {
     const user = await User.findById(user_id)
     return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (error) {
-    return new NextResponse("Database Error", { status: 500 });
+    return new NextResponse("User not found", { status: 500 });
   }
 };
