@@ -58,7 +58,9 @@ const Navbar = () => {
   }
 
   const logout = () => {
-    signOut();
+    setTimeout(async () => {
+      await signOut();
+    }, 1000);
     router.push("/");
   };
 
