@@ -2,14 +2,9 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import LoginAlert from "@/components/LoginAlert";
-import Buylists from "@/components/Buylists";
+import Buylists from "@components/Buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";
 import styles from "@/app/styles/pages/UserBuylists.module.css";
-
-export const metadata = {
-  title: "Lista de Compras",
-  description: "Lista de Compras",
-};
 
 const UserBuylist = () => {
   const session = useSession();

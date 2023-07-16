@@ -5,11 +5,6 @@ import Link from "next/link";
 import ProductView from "@/components/ProductView";
 import styles from "@/app/styles/pages/ItemsView.module.css";
 
-export const metadata = {
-  title: "Produtos - Academicos",
-  description: "Categoria Acadêmicos",
-};
-
 const Academic = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);

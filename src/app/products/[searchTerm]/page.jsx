@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import SearchResults from "@/components/SearchResults";
+import SearchResults from "@components/SearchResults";
 import { usePathname } from "next/navigation";
 import styles from "@/app/styles/pages/SearchResults.module.css";
 

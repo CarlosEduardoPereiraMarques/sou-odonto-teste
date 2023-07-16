@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CopyURL from "@/components/CopyURL";
-import EditBuylist from "./EditBuylist";
+import EditBuylist from "./EditBuyList";
 import ProductData from "./ProductData";
 import { useRouter } from "next/navigation";
 import styles from "@/app/styles/components/Buylist.module.css";

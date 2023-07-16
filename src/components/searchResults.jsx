@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ProductView from "./ProductView";
-import Link from "next/link";
 import styles from "@/app/styles/components/SearchResults.module.css";
 
 async function getData(id) {

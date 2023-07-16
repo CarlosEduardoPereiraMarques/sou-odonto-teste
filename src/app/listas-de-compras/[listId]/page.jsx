@@ -1,13 +1,8 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import Buylist from "@/components/Buylist";
+import Buylist from "@components/Buylist";
 import styles from "@/app/styles/pages/UserBuylist.module.css";
-
-export const metadata = {
-  title: "Lista de compras",
-  description: "Lista de compras",
-};
 
 export default function Page({ params }) {
   const [buylistCreator, setBuylistCreator] = useState(false);
