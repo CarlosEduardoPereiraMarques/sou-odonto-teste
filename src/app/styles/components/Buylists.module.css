@@ -1,0 +1,37 @@
+.container {
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.loading {
+  font-size: 18px;
+  color: #8b61f2;
+}
+
+.error {
+  font-size: 18px;
+  color: #fff5e3;
+}
+
+.empty {
+  font-size: 18px;
+  color: #e5cae8;
+}
+
+.buylist {
+  margin-bottom: 10px;
+}
+
+.link {
+  display: block;
+  color: #ffffff;
+  background-color: #8b61f2;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: #e5cae8;
+}

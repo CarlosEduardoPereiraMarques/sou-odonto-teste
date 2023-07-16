@@ -1,6 +1,5 @@
-import Link from "next/link";
 import React from "react";
-
+import styles from "@/app/styles/components/ProductView.module.css";
 
 const ProductView = ({ product }) => {
   const formatPrice = (price) => {
@@ -25,9 +24,22 @@ const ProductView = ({ product }) => {
     }
     return priceString + ",00";
   };
+
   return (
-    <div>
-        {product.name} - R${formatPrice(product.price)}
+    <div className={styles.card}>
+      <div>
+        <h2>{product.name}</h2>
+        <img
+          src={`${product.img}`}
+          alt="Imagem do Produto"
+          style={{ width: "5rem", height: "5rem" }}
+        />
+        <p className="price">R${formatPrice(product.price)}</p>
+        <p>{product.manufacturer}</p>
+      </div>
+      <button>
+        <a href={`/product/${product.id}`}>Ver detalhes</a>
+      </button>
     </div>
   );
 };

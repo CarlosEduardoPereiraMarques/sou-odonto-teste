@@ -1,6 +1,5 @@
-"use client";
 import React, { useState } from "react";
-
+import styles from "@/app/styles/components/QuantityCounter.module.css";
 
 const QuantityCounter = ({ initialValue, onChange }) => {
   const [quantity, setQuantity] = useState(initialValue || 0);
@@ -18,12 +17,17 @@ const QuantityCounter = ({ initialValue, onChange }) => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={decrement}>
+    <div className={styles.container}>
+      <button
+        type="button"
+        onClick={decrement}
+        className={styles.button}
+        disabled={quantity === 0}
+      >
         -
       </button>
-      <span>{quantity}</span>
-      <button type="button" onClick={increment}>
+      <span className={styles.quantity}>{quantity}</span>
+      <button type="button" onClick={increment} className={styles.button}>
         +
       </button>
     </div>

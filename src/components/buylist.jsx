@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
-import CopyURL from '@/components/CopyURL';
-import EditBuylist from './EditBuylist';
-import ProductData from './ProductData';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import CopyURL from "@/components/CopyURL";
+import EditBuylist from "./EditBuylist";
+import ProductData from "./ProductData";
+import { useRouter } from "next/navigation";
 import styles from "@/app/styles/components/Buylist.module.css";
 
-
 const Buylist = ({ listId, isBuylistCreator }) => {
-  const router = useRouter()
+  const router = useRouter();
 
   const [buylist, setBuylist] = useState({});
   const [loading, setLoading] = useState(true);
@@ -19,23 +18,21 @@ const Buylist = ({ listId, isBuylistCreator }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
-        const buylistRes = await fetch(`/api/buylists/${listId}`);        
+        const buylistRes = await fetch(`/api/buylists/${listId}`);
         const buylistData = await buylistRes.json();
         setBuylist(buylistData[0]);
 
         const productsRes = await fetch(`/api/buylist-products/${listId}`);
         const productsData = await productsRes.json();
-        setBuylistProducts(productsData)        
+        setBuylistProducts(productsData);
       } catch (err) {
         setError(err);
       } finally {
         setLoading(false);
       }
     };
-    
-    fetchData();
 
+    fetchData();
   }, [listId]);
 
   const deleteList = async () => {
@@ -51,7 +48,7 @@ const Buylist = ({ listId, isBuylistCreator }) => {
       });
       if (res.status === 201) {
         router.push("/listas-de-compras");
-      } 
+      }
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -62,51 +59,71 @@ const Buylist = ({ listId, isBuylistCreator }) => {
     setEditMode(true);
   };
 
-  if(loading) {
+  if (loading) {
     return <p>Carregando...</p>;
   }
 
-  if(error) {
-    console.log(error)
-    return <p>Não possível excluir lista</p>
+  if (error) {
+    console.log(error);
+    return <p>Não foi possível excluir a lista</p>;
   }
-  console.log(isBuylistCreator)
-  return (
-    <div>
-      <h1>{buylist.name}</h1>
-      
-      <p>{buylist.description}</p>
-      <CopyURL url={window.location.href} />
 
-      {isBuylistCreator && (
-        <>
-          {editMode ? (
-            <>
-              <EditBuylist listId={listId} setEditMode={setEditMode} />
-              <button onClick={() => setShowConfirmation(true)}>Excluir Lista</button>
-              {showConfirmation && (
-                <div>
-                  <button onClick={deleteList}>Sim</button>
-                  <button onClick={() => setShowConfirmation(false)}>Não</button>
-                </div>
-              )}
-            </>
-          ) : (
-            <button onClick={handleEditClick}>Editar Dados da Lista</button>
-          )}
-        </>
-      )}
-      
-      
-      <h2>Produtos:</h2>
-      
-      {buylistProducts.map(product => (
-        <li key={product._id}>
-          <ProductData buylistProduct={product} isBuylistCreator={isBuylistCreator} />
+  return (
+    <div className={styles.container}>
+      <div className={styles.buylistData}>
+        <h1 className={styles.title}>{buylist.name}</h1>
+        <p className={styles.description}>{buylist.description}</p>
+        <CopyURL url={window.location.href} />
+
+        {isBuylistCreator && (
+          <>
+            {editMode ? (
+              <>
+                <EditBuylist listId={listId} setEditMode={setEditMode} />
+                <button
+                  onClick={() => setShowConfirmation(true)}
+                  className={styles.deleteButton}
+                >
+                  Excluir Lista
+                </button>
+                {showConfirmation && (
+                  <div className={styles.confirmationButtons}>
+                    <button
+                      onClick={deleteList}
+                      className={styles.deleteButton}
+                    >
+                      Sim
+                    </button>
+                    <button
+                      onClick={() => setShowConfirmation(false)}
+                      className={styles.button}
+                    >
+                      Não
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <button onClick={handleEditClick} className={styles.button}>
+                Editar Dados da Lista
+              </button>
+            )}
+          </>
+        )}
+      </div>
+
+      <h2 className={styles.productName}>Produtos:</h2>
+
+      {buylistProducts.map((product) => (
+        <li key={product._id} className={styles.listItem}>
+          <ProductData
+            buylistProduct={product}
+            isBuylistCreator={isBuylistCreator}
+          />
         </li>
-      ))}      
+      ))}
     </div>
   );
-}
+};
 
 export default Buylist;

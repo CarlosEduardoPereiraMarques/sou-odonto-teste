@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EditProductInList from "./EditProductInList";
-
+import styles from "@/app/styles/components/ProductData.module.css";
+import Link from "next/link";
 
 const ProductData = ({ buylistProduct, isBuylistCreator }) => {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  
+
   const deleteProduct = async () => {
     try {
       const res = await fetch("/api/buylist-products", {
@@ -51,7 +52,6 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
     }
   }, [buylistProduct]);
 
-
   const handleToggleEditing = () => {
     setIsEditing(!isEditing);
   };
@@ -61,14 +61,16 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
   }
 
   return (
-    <div>
+    <div className={styles.productData}>
       <h2>Dados do Produto:</h2>
-      <Image
-        width={200}
-        height={200}
-        src={productData.img}
-        alt={productData.name}
-      />
+      <Link href={`/product/${productData.id}`}>
+        <Image
+          width={200}
+          height={200}
+          src={productData.img}
+          alt={productData.name}
+        />
+      </Link>
       <p>Nome: {productData.name}</p>
       <p>Marca: {productData.manufacturer}</p>
       <p>Quantidade: {buylistProduct.amount}</p>
@@ -82,13 +84,21 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
                 onClose={handleToggleEditing}
                 buylist={buylistProduct}
               />
-              <button onClick={() => setShowConfirmation(true)}>
+              <button
+                className={styles.deleteButton}
+                onClick={() => setShowConfirmation(true)}
+              >
                 Excluir item da lista?
               </button>
               {showConfirmation && (
                 <div>
-                  <button onClick={deleteProduct}>Sim</button>
-                  <button onClick={() => setShowConfirmation(false)}>
+                  <button className={styles.button} onClick={deleteProduct}>
+                    Sim
+                  </button>
+                  <button
+                    className={styles.button}
+                    onClick={() => setShowConfirmation(false)}
+                  >
                     Não
                   </button>
                 </div>
@@ -96,14 +106,27 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
             </div>
           ) : (
             <div>
-              <button onClick={handleToggleEditing}>Editar</button>
-              <button onClick={() => setShowConfirmation(true)}>
+              <button onClick={handleToggleEditing} className={styles.button}>
+                Editar
+              </button>
+              <button
+                onClick={() => setShowConfirmation(true)}
+                className={styles.deleteButton}
+              >
                 Excluir item da lista?
               </button>
               {showConfirmation && (
                 <div>
-                  <button onClick={deleteProduct}>Sim</button>
-                  <button onClick={() => setShowConfirmation(false)}>
+                  <button
+                    onClick={deleteProduct}
+                    className={styles.deleteButton}
+                  >
+                    Sim
+                  </button>
+                  <button
+                    onClick={() => setShowConfirmation(false)}
+                    className={styles.button}
+                  >
                     Não
                   </button>
                 </div>

@@ -1,153 +1,143 @@
 .navbar {
-  list-style: none;
+  --primary-color: #8b61f2;
+  --secondary-color: #e5cae8;
+  --white-color: #ffffff;
+  --light-color: #f7f7f7;
+  --accent-color: #fff5e3;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
   padding: 10px;
-  margin: 0;
+}
+
+.column.searchColumn {
   display: flex;
-  background-color: #8b61f2;
   align-items: center;
-  height: 100px;
-  color: #ffffff;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.searchColumn {
-  flex: 1;
-}
-
-.userColumn {
-  flex: 0 0 50px;
-}
-
-.navbar li {
-  display: inline-block;
-  margin-right: 10px;
+.searchForm {
+  position: relative;
 }
 
 .searchInput {
-  margin-bottom: 5px;
-  width: 500px;
-  height: 30px;
-  background-color: #ffffff;
-  color: #000000;
-  border-color: #cacaca;
-  padding: 10px;
-  border-radius: 5px;
+  width: 300px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .searchInputError {
-  border: 2px solid #ff0000;
-  transition: border-color 500ms;
-}
-
-.searchInputError::placeholder {
-  color: #ff0000;
-  transition: color 500ms;
-}
-
-
-.categories {
-  text-decoration: none;
-  margin-top: 12px;
-  margin-bottom: 5px;
-  font-size: large;
-}
-
-.categories li :hover {
-  background-color: #6d4dbe;
-  margin: 10px;
-  padding: 5px;
-  transition: 100ms;
-}
-
-.userInfo {
-  display: flex;
-  align-items: center;
-  width: 160px;
-}
-
-.userInfoText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.divider {
-  width: 1px;
-  height: 40px;
-  background-color: #ffffff;
-  margin: 0 10px;
-}
-
-.userInfoRegister :hover,
-.userInfoLogin :hover {
-  font-weight: bold;
-}
-
-.searchForm{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  border: 2px solid red;
 }
 
 .searchButton {
-  padding: 5px 10px;
-  border: 2px solid #ffffff;
-  background: none;
-  border-radius: 15px;
-  color: #fff;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-left: 8px;
+  cursor: pointer;
 }
 
 .searchButton:hover {
-  background-color: #ffffff;
-  color: #6d4dbe;
-  transition: 500ms;
+  background-color: #ad96e6;
+}
+
+.categories {
+  margin-left: 16px;
+}
+
+.categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.categories li {
+  margin-right: 16px;
+}
+
+.categories li {
+  text-decoration: none;
+  color: var(--white-color);
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.categories li :hover {
+  color: var(--accent-color);
+  background-color: #6144ac;
+  padding: 5px;
+}
+
+.column.userColumn {
+  display: flex;
+  align-items: center;
+}
+
+.userInfoText {
+  color: var(--white-color);
+  font-size: 16px;
 }
 
 .logoutButton {
-  padding: 5px 10px;
-  border: 2px solid #ffffff;
-  background: none;
-  border-radius: 15px;
-  color: #fff;
+  background-color: transparent;
+  color: var(--white-color);
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .logoutButton:hover {
-  background-color: #ff0000;
-  transition: background-color 300ms;
+  color: var(--accent-color);
+  background-color: #6144ac;
+  padding: 8px;
 }
 
-@media screen and (max-width: 320px) {
-
-.searchForm{
-  margin: 50px 0 0 0;
-  width: 250px;
+.divider {
+  border: none;
+  border-top: 1px solid var(--white-color);
+  margin: 8px 0;
 }
 
-.searchInput{
-  width: 150px;
-  margin-right: 10px ;
-  
-}
-.searchInput::placeholder {
-  font-size: 12px;
-}
+@media screen and (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .column {
+    margin-bottom: 10px;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .searchButton {
+    margin-top: 8px;
+    width: 100%;
+  }
+  .searchButton:hover {
+    margin-top: 8px;
+    width: 100%;
+  }
 }
 
-@media screen and (min-width: 321px) and (max-width: 480px) {
-  
+@media screen and (max-width: 768px) {
+  .searchInput {
+    width: 200px;
+  }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  
-}
-
-@media screen and (min-width: 769px) and (max-width: 992px) {
-  
+@media screen and (max-width: 992px) {
+  .searchInput {
+    width: 250px;
+  }
 }

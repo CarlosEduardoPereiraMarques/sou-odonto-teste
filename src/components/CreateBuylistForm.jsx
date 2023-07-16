@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import styles from "@/app/styles/components/CreateBuylistForm.module.css";
 
-
 const CreateBuylistForm = ({ goBack }) => {
   const [error, setError] = useState(null);
   const session = useSession();
@@ -35,11 +34,21 @@ const CreateBuylistForm = ({ goBack }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="name" placeholder="Nome da Lista" />
-      <input type="text" name="description" placeholder="Descrição" />
-      <button>Criar</button>
-      <button type="button" onClick={handleGoBack}>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <input
+        type="text"
+        name="name"
+        placeholder="Nome da Lista"
+        className={styles.input}
+      />
+      <input
+        type="text"
+        name="description"
+        placeholder="Descrição"
+        className={styles.input}
+      />
+      <button className={styles.button}>Criar</button>
+      <button className={styles.button} type="button" onClick={handleGoBack}>
         Voltar
       </button>
     </form>

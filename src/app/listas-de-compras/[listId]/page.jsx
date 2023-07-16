@@ -1,13 +1,13 @@
-"use client"
-import { useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
-import Buylist from '@/components/Buylist';
+"use client";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import Buylist from "@/components/Buylist";
+import styles from "@/app/styles/pages/UserBuylist.module.css";
 
 export const metadata = {
   title: "Lista de compras",
   description: "Lista de compras",
 };
-
 
 export default function Page({ params }) {
   const [buylistCreator, setBuylistCreator] = useState(false);
@@ -16,7 +16,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (session.status === 'loading') {
+      if (session.status === "loading") {
         return;
       }
       try {
@@ -27,9 +27,8 @@ export default function Page({ params }) {
           isBuylistCreator(userEmail);
         }
       } catch (error) {
-        setError(error)
+        setError(error);
       }
-
     };
 
     fetchData();
@@ -46,19 +45,19 @@ export default function Page({ params }) {
   };
 
   const isBuylistCreator = (userEmail) => {
-    setBuylistCreator(userEmail === session.data.user.email)
+    setBuylistCreator(userEmail === session.data.user.email);
   };
 
-  if (session.status === 'loading') {
-    return <div>Carregando...</div>; 
+  if (session.status === "loading") {
+    return <div>Carregando...</div>;
   }
   return (
-    <>
+    <div className={styles.container}>
       {buylistCreator ? (
         <Buylist listId={params.listId} isBuylistCreator={buylistCreator} />
       ) : (
         <Buylist listId={params.listId} isBuylistCreator={buylistCreator} />
       )}
-    </>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "@/app/styles/components/InputForms.module.css";
 
-
 const PasswordInput = ({ onChange }) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +21,9 @@ const PasswordInput = ({ onChange }) => {
     }
   };
 
-  const inputClasses = error ? `${styles.input} ${styles.error}` : styles.input;
+  const inputClasses = error
+    ? `${styles.input} ${styles.errorInput}`
+    : styles.input;
 
   return (
     <div>
@@ -33,7 +34,7 @@ const PasswordInput = ({ onChange }) => {
         placeholder="Senha"
         className={inputClasses}
       />
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.errorMessage}>{error}</div>}
     </div>
   );
 };

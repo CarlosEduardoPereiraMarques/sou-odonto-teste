@@ -1,17 +1,15 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-import style from "@/app/styles/pages/MeusDados.module.css";
 import LoginAlert from "@/components/LoginAlert";
 import Buylists from "@/components/Buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";
+import styles from "@/app/styles/pages/UserBuylists.module.css";
 
 export const metadata = {
   title: "Lista de Compras",
   description: "Lista de Compras",
 };
-
 
 const UserBuylist = () => {
   const session = useSession();
@@ -19,7 +17,7 @@ const UserBuylist = () => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   if (session.status === "unauthenticated") {
-    return <LoginAlert />;
+    return <LoginAlert className={styles.loginAlert} />;
   }
 
   const handleAddClick = () => {
@@ -32,20 +30,24 @@ const UserBuylist = () => {
   };
 
   return (
-    <div>
-      <div className={style.breadcrumb}>
-        <Link href="/register">Home</Link>
-        <span className={style.divider}>/</span>
-        <span className={style.active}>Listas de Compras</span>
-      </div>
+    <div className={styles.container}>
       {addMode ? (
-        <CreateBuylistForm goBack={handleGoBack} />
+        <CreateBuylistForm
+          className={styles.createBuylistForm}
+          goBack={handleGoBack}
+        />
       ) : (
-        <button onClick={handleAddClick}>Adicionar lista de compras</button>
+        <button className={styles.button} onClick={handleAddClick}>
+          Adicionar lista de compras
+        </button>
       )}
 
-      <ul>
-        {session.status === "authenticated" && <Buylists key={refreshKey} session={session} />}
+      <ul className={styles.list}>
+        {session.status === "authenticated" && (
+          <li className={styles.listItem}>
+            <Buylists key={refreshKey} session={session} className="buylists" />
+          </li>
+        )}
       </ul>
     </div>
   );

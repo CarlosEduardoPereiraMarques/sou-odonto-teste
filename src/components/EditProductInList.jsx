@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import QuantityCounter from "./QuantityCounter";
-
+import styles from "@/app/styles/components/EditProductInList.module.css";
 
 const EditProductInList = ({ onUpdate, onClose, buylist }) => {
   const [quantity, setQuantity] = useState(buylist.amount);
@@ -27,7 +27,7 @@ const EditProductInList = ({ onUpdate, onClose, buylist }) => {
         }),
       });
       if (res.ok) {
-        onUpdate()
+        onUpdate();
         window.location.reload();
       } else {
         setError("Erro ao atualizar o produto");
@@ -43,11 +43,11 @@ const EditProductInList = ({ onUpdate, onClose, buylist }) => {
   };
 
   return (
-    <div>
-      <h3>Editar Produto</h3>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h3 className={styles.title}>Editar Produto</h3>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div>
-          <label>Quantidade:</label>
+          <label className={styles.label}>Quantidade:</label>
           <QuantityCounter
             initialValue={buylist.amount}
             value={quantity}
@@ -56,22 +56,27 @@ const EditProductInList = ({ onUpdate, onClose, buylist }) => {
           />
         </div>
         <div>
-          <label>
+          <label className={styles.label}>
             <input
               type="checkbox"
               checked={isRequired}
               onChange={(e) => setIsRequired(e.target.checked)}
               disabled={!editingEnabled}
+              className={styles.checkbox}
             />
             Obrigatório
           </label>
         </div>
         {editingEnabled ? (
-          <button>Atualizar</button>
+          <button className={styles.button}>Atualizar</button>
         ) : (
-          <button onClick={handleEditToggle}>Editar</button>
+          <button onClick={handleEditToggle} className={styles.button}>
+            Editar
+          </button>
         )}
-        <button onClick={onClose}>Fechar</button>
+        <button onClick={onClose} className={styles.button}>
+          Fechar
+        </button>
       </form>
     </div>
   );

@@ -24,7 +24,7 @@ const handler = NextAuth({
               throw new Error("Senha Incorreta!");
             }
           } else {
-            throw new Error("Usuário não encontrado");
+            throw new Error("Usuario nao encontrado");
           }
         } catch (err) {
           throw new Error(err);

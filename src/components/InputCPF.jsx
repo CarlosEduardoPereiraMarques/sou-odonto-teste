@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "@/app/styles/components/InputForms.module.css";
 
-
 const InputCPF = ({ onChange }) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
@@ -89,7 +88,9 @@ const InputCPF = ({ onChange }) => {
     }
   };
 
-  const inputClasses = error ? `${styles.input} ${styles.error}` : styles.input;
+  const inputClasses = error
+    ? `${styles.input} ${styles.errorInput}`
+    : styles.input;
 
   return (
     <div>
@@ -101,7 +102,7 @@ const InputCPF = ({ onChange }) => {
         placeholder="CPF"
         className={inputClasses}
       />
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.errorMessage}>{error}</div>}
     </div>
   );
 };

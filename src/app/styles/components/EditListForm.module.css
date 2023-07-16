@@ -1,0 +1,32 @@
+.form {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.input {
+  background-color: #f7f7f7;
+  color: #000000;
+  border-radius: 10px;
+  border-color: rgb(153, 0, 255);
+  padding: 10px;
+}
+
+.button {
+  background-color: #8b61f2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e5cae8;
+}
+
+.button:active {
+  background-color: #ffffff;
+  color: #8b61f2;
+}

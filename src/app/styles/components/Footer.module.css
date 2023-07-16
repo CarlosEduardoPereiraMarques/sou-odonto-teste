@@ -1,13 +1,23 @@
 .footer {
-  bottom: 0;
-  width: 100%;
-  height: 100px;
   background-color: #8b61f2;
+  color: #ffffff;
+  padding: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-.footer a {
-  margin-left: 15px;
+.footer p {
+  font-size: 14px;
+}
+
+.link {
+  display: inline-block;
+  margin-left: 10px;
+  color: #e5cae8;
+  text-decoration: none;
+}
+
+.image {
+  vertical-align: middle;
 }

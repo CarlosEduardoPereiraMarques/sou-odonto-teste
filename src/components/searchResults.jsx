@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductView from "./ProductView";
 import Link from "next/link";
+import styles from "@/app/styles/components/SearchResults.module.css";
 
 async function getData(id) {
   const searchResult = await fetch(`/api/search/${id}`);
@@ -18,7 +19,6 @@ const SearchResults = ({ searchTerm }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -35,23 +35,25 @@ const SearchResults = ({ searchTerm }) => {
   }, [searchTerm]);
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <div className={styles.message}>Carregando...</div>;
   }
 
   if (results.length === 0) {
-    return <div>Nenhum resultado encontrado</div>;
+    return <div className={styles.message}>Nenhum resultado encontrado</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className={`${styles.message} ${styles.error}`}>
+        Error: {error.message}
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {results.map((result) => (
-        <Link href={`/product/${result.id}`} key={result.id}>
-          <ProductView product={result} />
-        </Link>
+        <ProductView key={result.id} product={result} />
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import ToggleList from "@/components/ToggleList";
 import QuantityCounter from "@/components/QuantityCounter";
 import AddBuylist from "@/components/AddBuylist";
+import styles from "@/app/styles/pages/Product.module.css";
 
 async function getProductData(id) {
   try {
@@ -32,8 +33,13 @@ async function getBuylists(userEmail) {
 
 const Checkbox = ({ label, checked, onChange }) => {
   return (
-    <label>
-      <input type="checkbox" checked={checked} onChange={onChange} />
+    <label className={styles.checkboxLabel}>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        className={styles.checkbox}
+      />
       {label}
     </label>
   );
@@ -41,7 +47,7 @@ const Checkbox = ({ label, checked, onChange }) => {
 
 const ProductPage = () => {
   const session = useSession();
-  const router = useRouter()
+  const router = useRouter();
   const pathname = usePathname();
   const id = pathname.split("/").pop();
   const [product, setProduct] = useState(null);
@@ -157,31 +163,52 @@ const ProductPage = () => {
       console.log(err);
     }
   };
+
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>R${formatPrice(product.price)}</p>
-      <p>Fabricante: {product.manufacturer}</p>
-      <Image src={`${product.img}`} alt="Imagem do Produto" width={300} height={79} />
-      <QuantityCounter
-        value={selectedQuantity}
-        onChange={setSelectedQuantity}
-        initialValue={1}
-      />
-      <Checkbox
-        label="Item obrigatório"
-        checked={isRequired}
-        onChange={handleCheckboxChange}
-      /> {session.status === "authenticated" ? (
-        <>
-          <ToggleList buylists={buylists} onItemClick={handleItemClick} />
-          {addBuylist && <AddBuylist setAddMode={setAddBuylist} user_email={session.data.user.email} />}
-          {successMessage && <div>{successMessage}</div>}
-          {error && <div>{error}</div>}
-        </>
-      ) : (
-        <button onClick={() => router.push("/login")}>Faça o login para adicionar a uma lista de compras</button>
-      )}
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>{product.name}</h1>
+        <p className={styles.text}>R${formatPrice(product.price)}</p>
+        <p className={styles.text}>Fabricante: {product.manufacturer}</p>
+        <img
+          src={`${product.img}`}
+          alt="Imagem do Produto"
+          style={{ width: "15rem", height: "15rem" }}
+        />
+        <QuantityCounter
+          value={selectedQuantity}
+          onChange={setSelectedQuantity}
+          initialValue={1}
+        />
+        <Checkbox
+          label="Item obrigatório"
+          checked={isRequired}
+          onChange={handleCheckboxChange}
+          className={styles.checkbox}
+        />{" "}
+        {session.status === "authenticated" ? (
+          <>
+            <ToggleList buylists={buylists} onItemClick={handleItemClick} />
+            {addBuylist && (
+              <AddBuylist
+                setAddMode={setAddBuylist}
+                user_email={session.data.user.email}
+              />
+            )}
+            {successMessage && (
+              <div className={styles.successMessage}>{successMessage}</div>
+            )}
+            {error && <div className={styles.errorMessage}>{error}</div>}
+          </>
+        ) : (
+          <button
+            onClick={() => router.push("/login")}
+            className={styles.button}
+          >
+            Faça o login para adicionar a uma lista de compras
+          </button>
+        )}
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import styles from "@/app/styles/pages/Login.module.css";
 
 export const metadata = {
   title: "Login",
@@ -34,15 +35,29 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Acessar</h1>
-      <form onSubmit={handleLogin}>
-        <input type="email" name="userEmail" placeholder="Email" />
-        <input type="password" name="userPassword" placeholder="Senha" />
-        {error && <p>{error}</p>}
-        <button>Acessar</button>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Login</h1>
+      <form onSubmit={handleLogin} className={styles.form}>
+        <input
+          type="email"
+          name="userEmail"
+          placeholder="Email"
+          className={styles.input}
+          required
+        />
+        <input
+          type="password"
+          name="userPassword"
+          placeholder="Senha"
+          className={styles.input}
+          required
+        />
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <button className={styles.button}>Acessar</button>
       </form>
-      <Link href="/register">Não tem uma conta? Cadastre-se</Link>
+      <Link href="/register" className={styles.link}>
+        Não tem uma conta? Cadastre-se
+      </Link>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "@/app/styles/components/InputForms.module.css";
 
-
 const EmailInput = ({ value, onChange }) => {
   const [error, setError] = useState(false);
 
@@ -17,7 +16,9 @@ const EmailInput = ({ value, onChange }) => {
     setError(!isValid);
   };
 
-  const inputClasses = error ? `${styles.input} ${styles.error}` : styles.input;
+  const inputClasses = error
+    ? `${styles.input} ${styles.errorInput}`
+    : styles.input;
 
   return (
     <div>
@@ -29,7 +30,7 @@ const EmailInput = ({ value, onChange }) => {
         onChange={handleInputChange}
         className={inputClasses}
       />
-      {error && <div className={styles.error}>Email inválido</div>}
+      {error && <div className={styles.errorMessage}>Email inválido</div>}
     </div>
   );
 };

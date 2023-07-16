@@ -1,3 +1,12 @@
-.input{
-    border-color: blueviolet;
+.input {
+  background-color: #c29edf;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.error {
+  color: #ffffff;
+  background-color: #ff3939;
+  padding: 10px;
+  margin-top: 10px;
 }

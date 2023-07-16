@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import EditListForm from "./EditListForm";
 import styles from "@/app/styles/components/AddBuylist.module.css";
 
-
 const AddBuylist = ({ setAddMode, user_email }) => {
   const [error, setError] = useState(null);
 
@@ -35,9 +34,9 @@ const AddBuylist = ({ setAddMode, user_email }) => {
   };
 
   return (
-    <div>
+    <div className={styles.input}>
       <EditListForm onSubmit={AddListData} goBack={handleGoBack} />
-      {error && <div>Error: {error.message}</div>}
+      {error && <div className={styles.error}>Error: {error.message}</div>}
     </div>
   );
 };

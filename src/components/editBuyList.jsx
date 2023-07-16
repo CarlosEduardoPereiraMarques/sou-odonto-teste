@@ -3,7 +3,6 @@ import EditListForm from "./EditListForm";
 import { useRouter } from "next/navigation";
 import styles from "@/app/styles/components/EditBuylist.module.css";
 
-
 const EditBuylist = ({ listId, setEditMode }) => {
   const [error, setError] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -37,7 +36,7 @@ const EditBuylist = ({ listId, setEditMode }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <EditListForm onSubmit={EditListData} goBack={handleGoBack} />
       {error && <div>Error: {error.message}</div>}
     </div>
