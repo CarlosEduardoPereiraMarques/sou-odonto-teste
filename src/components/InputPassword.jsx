@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styles from "@/app/styles/inputForm.module.css";
+import styles from "@/app/styles/components/InputForms.module.css";
+
 
 const PasswordInput = ({ onChange }) => {
   const [value, setValue] = useState("");

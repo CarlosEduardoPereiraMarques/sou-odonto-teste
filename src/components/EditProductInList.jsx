@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QuantityCounter from "./QuantityCounter";
 
+
 const EditProductInList = ({ onUpdate, onClose, buylist }) => {
   const [quantity, setQuantity] = useState(buylist.amount);
   const [isRequired, setIsRequired] = useState(buylist.obligatory_item);

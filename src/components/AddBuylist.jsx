@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import EditListForm from "./EditListForm";
+import styles from "@/app/styles/components/AddBuylist.module.css";
+
 
 const AddBuylist = ({ setAddMode, user_email }) => {
   const [error, setError] = useState(null);

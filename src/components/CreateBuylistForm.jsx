@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
+import styles from "@/app/styles/components/CreateBuylistForm.module.css";
+
 
 const CreateBuylistForm = ({ goBack }) => {
   const [error, setError] = useState(null);

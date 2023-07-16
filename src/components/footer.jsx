@@ -3,6 +3,7 @@ import styles from "@/app/styles/footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const Footer = () => {
   return (
     <footer className={styles.footer}>

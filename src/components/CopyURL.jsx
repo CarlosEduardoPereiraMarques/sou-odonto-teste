@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import styles from "@/app/styles/components/CopyURL.module.css";
+
 
 const CopyURL = ({url}) => {
 

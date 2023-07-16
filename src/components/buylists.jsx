@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import styles from "@/app/styles/components/Buylists.module.css";
+
 
 const Buylists = ({ session }) => {
   const [buylists, setBuylists] = useState([]);

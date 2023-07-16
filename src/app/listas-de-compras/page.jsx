@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import style from "@/app/styles/meus-dados.module.css";
+import style from "@/app/styles/pages/MeusDados.module.css";
 import LoginAlert from "@/components/LoginAlert";
 import Buylists from "@/components/Buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EditProductInList from "./EditProductInList";
 
+
 const ProductData = ({ buylistProduct, isBuylistCreator }) => {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);

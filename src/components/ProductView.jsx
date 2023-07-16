@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
+
 const ProductView = ({ product }) => {
   const formatPrice = (price) => {
     let priceString = String(price);

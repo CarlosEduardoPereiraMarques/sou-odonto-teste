@@ -5,6 +5,7 @@ import style from "@/app/styles/navbar.module.css";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
+
 const links = [
   {
     id: 1,

@@ -30,14 +30,10 @@ export default function Page({ params }) {
         setError(error)
       }
 
-      const isBuylistCreator = (userEmail) => {
-        setBuylistCreator(userEmail === session.data.user.email)
-      };
-
     };
 
     fetchData();
-  }, [session, params.listId]);
+  }, [session]);
 
   const getUserEmail = async (id) => {
     try {
@@ -47,6 +43,10 @@ export default function Page({ params }) {
     } catch (error) {
       console.error("Error getting user ID:", error);
     }
+  };
+
+  const isBuylistCreator = (userEmail) => {
+    setBuylistCreator(userEmail === session.data.user.email)
   };
 
   if (session.status === 'loading') {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import EditListForm from "./EditListForm";
 import { useRouter } from "next/navigation";
+import styles from "@/app/styles/components/EditBuylist.module.css";
+
 
 const EditBuylist = ({ listId, setEditMode }) => {
   const [error, setError] = useState(null);

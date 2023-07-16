@@ -18,6 +18,7 @@ const SearchResults = ({ searchTerm }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     const fetchResults = async () => {
       try {

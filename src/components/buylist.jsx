@@ -3,6 +3,8 @@ import CopyURL from '@/components/CopyURL';
 import EditBuylist from './EditBuylist';
 import ProductData from './ProductData';
 import { useRouter } from 'next/navigation';
+import styles from "@/app/styles/components/Buylist.module.css";
+
 
 const Buylist = ({ listId, isBuylistCreator }) => {
   const router = useRouter()
@@ -68,7 +70,7 @@ const Buylist = ({ listId, isBuylistCreator }) => {
     console.log(error)
     return <p>Não possível excluir lista</p>
   }
-
+  console.log(isBuylistCreator)
   return (
     <div>
       <h1>{buylist.name}</h1>
@@ -77,19 +79,24 @@ const Buylist = ({ listId, isBuylistCreator }) => {
       <CopyURL url={window.location.href} />
 
       {isBuylistCreator && (
-        editMode ? (
-          <EditBuylist listId={listId} setEditMode={setEditMode} />
-        ) : (
-          <button onClick={handleEditClick}>Editar Dados da Lista</button>
-        )
+        <>
+          {editMode ? (
+            <>
+              <EditBuylist listId={listId} setEditMode={setEditMode} />
+              <button onClick={() => setShowConfirmation(true)}>Excluir Lista</button>
+              {showConfirmation && (
+                <div>
+                  <button onClick={deleteList}>Sim</button>
+                  <button onClick={() => setShowConfirmation(false)}>Não</button>
+                </div>
+              )}
+            </>
+          ) : (
+            <button onClick={handleEditClick}>Editar Dados da Lista</button>
+          )}
+        </>
       )}
-      <button onClick={() => setShowConfirmation(true)}>Excluir Lista</button>
-      {showConfirmation && (
-        <div>
-          <button onClick={deleteList}>Sim</button>
-          <button onClick={() => setShowConfirmation(false)}>Não</button>
-        </div>
-      )}
+      
       
       <h2>Produtos:</h2>
       
