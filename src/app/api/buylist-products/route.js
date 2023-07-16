@@ -45,15 +45,15 @@ export const PUT = async (request) => {
       { $set: { amount: amount, obligatory_item: obligatory_item } },
       { new: true }
     );
-    return {
+    return new NextResponse({
       statusCode: 200,
       body: "Produto atualizado com sucesso",
-    };
+    })
   } catch (error) {
-    return {
+    return new NextResponse({
       statusCode: 500,
-      body: "Erro ao atualizar o produto",
-    };
+      body: "Não possível atualizar o produto",
+    })
   }
 };
 

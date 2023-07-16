@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import EditListForm from "./EditListForm";
-import { useRouter } from "next/navigation";
 
 const AddBuylist = ({ setAddMode, user_email }) => {
   const [error, setError] = useState(null);
-  const router = useRouter();
 
   const AddListData = async (data) => {
-    console.log(data)
     try {
       const res = await fetch(`/api/buylists/`, {
         method: "POST",

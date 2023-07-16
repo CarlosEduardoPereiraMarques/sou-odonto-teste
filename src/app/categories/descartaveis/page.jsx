@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,6 @@ export const metadata = {
   title: "Produtos - Descartáveis",
   description: "Categoria Descartáveis",
 };
-
 
 const Disposable = () => {
   const [products, setProducts] = useState([]);

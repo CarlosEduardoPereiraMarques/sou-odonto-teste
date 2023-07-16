@@ -8,7 +8,6 @@ const Buylist = ({ listId, isBuylistCreator }) => {
   const router = useRouter()
 
   const [buylist, setBuylist] = useState({});
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [buylistProducts, setBuylistProducts] = useState([]);
@@ -67,7 +66,7 @@ const Buylist = ({ listId, isBuylistCreator }) => {
 
   if(error) {
     console.log(error)
-    return <p>Não possivel excluir lista</p>
+    return <p>Não possível excluir lista</p>
   }
 
   return (

@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const BuyLists = ({ session }) => {
-  const router = useRouter();
+const Buylists = ({ session }) => {
   const [buylists, setBuylists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,4 +58,4 @@ const BuyLists = ({ session }) => {
   );
 };
 
-export default BuyLists;
+export default Buylists;

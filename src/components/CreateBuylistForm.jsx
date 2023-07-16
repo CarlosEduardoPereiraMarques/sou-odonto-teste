@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const CreateBuylistForm = ({ goBack }) => {
@@ -26,7 +25,6 @@ const CreateBuylistForm = ({ goBack }) => {
       goBack();
     } catch (err) {
       setError(err);
-      console.log(err);
     }
   };
 

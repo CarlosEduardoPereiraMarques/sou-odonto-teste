@@ -1,11 +1,10 @@
 "use client"
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import style from "@/app/styles/meus-dados.module.css";
 import LoginAlert from "@/components/LoginAlert";
-import BuyLists from "@/components/Buylists";
+import Buylists from "@/components/Buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";
 
 export const metadata = {
@@ -15,7 +14,6 @@ export const metadata = {
 
 
 const UserBuylist = () => {
-  const router = useRouter();
   const session = useSession();
   const [addMode, setAddMode] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -47,7 +45,7 @@ const UserBuylist = () => {
       )}
 
       <ul>
-        {session.status === "authenticated" && <BuyLists key={refreshKey} session={session} />}
+        {session.status === "authenticated" && <Buylists key={refreshKey} session={session} />}
       </ul>
     </div>
   );

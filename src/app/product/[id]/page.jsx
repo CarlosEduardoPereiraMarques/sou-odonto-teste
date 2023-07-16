@@ -68,9 +68,9 @@ const ProductPage = () => {
     if (session.status === "authenticated") {
       const fetchBuylists = async () => {
         try {
-          const user_email = session.data.user.email;
+          const userEmail = session.data.user.email;
 
-          const res = await fetch(`/api/users/buylist/${user_email}`);
+          const res = await fetch(`/api/users/buylist/${userEmail}`);
           if (res.ok) {
             const data = await res.json();
             setBuylists(data);

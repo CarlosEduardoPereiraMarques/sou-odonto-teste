@@ -50,16 +50,13 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
     }
   }, [buylistProduct]);
 
-  const handleUpdateProduct = (updatedProduct) => {
-    console.log("Produto atualizado:", updatedProduct);
-  };
 
   const handleToggleEditing = () => {
     setIsEditing(!isEditing);
   };
 
   if (!buylistProduct || !productData) {
-    return <div>Loading...</div>;
+    return <div>Carregando...</div>;
   }
 
   return (
@@ -80,8 +77,7 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
           {isEditing ? (
             <div>
               <EditProductInList
-                product={productData}
-                onUpdate={handleUpdateProduct}
+                onUpdate={handleToggleEditing}
                 onClose={handleToggleEditing}
                 buylist={buylistProduct}
               />

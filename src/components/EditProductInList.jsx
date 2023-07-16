@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import QuantityCounter from "./QuantityCounter";
 
-const EditProductInList = ({ product, onUpdate, onClose, buylist }) => {
+const EditProductInList = ({ onUpdate, onClose, buylist }) => {
   const [quantity, setQuantity] = useState(buylist.amount);
   const [isRequired, setIsRequired] = useState(buylist.obligatory_item);
   const [editingEnabled, setEditingEnabled] = useState(true);
@@ -25,9 +25,9 @@ const EditProductInList = ({ product, onUpdate, onClose, buylist }) => {
           obligatory_item: isRequired,
         }),
       });
-
       if (res.ok) {
-        console.log("Produto atualizado com sucesso");
+        onUpdate()
+        window.location.reload();
       } else {
         setError("Erro ao atualizar o produto");
       }

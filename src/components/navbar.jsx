@@ -57,7 +57,7 @@ const Navbar = () => {
     }
   }
 
-  const Logout = () => {
+  const logout = () => {
     signOut();
     router.push("/");
   };
@@ -112,7 +112,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className={style.userInfoText}>
-              <button onClick={Logout} className={style.logoutButton}>
+              <button onClick={logout} className={style.logoutButton}>
                 Logout
               </button>
             </div>
