@@ -15,7 +15,7 @@ export const GET = async (request, { params }) => {
 };
 
 export const POST = async (request) => {
-  const { name, description, user_email } = await request.json();
+  const { user_email, name, description } = await request.json(); 
   await connectDB();
   const user = await User.findOne({ email: user_email });
   const new_buylist = new buylist_datas({

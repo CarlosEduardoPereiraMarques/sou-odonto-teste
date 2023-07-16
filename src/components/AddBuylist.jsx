@@ -7,6 +7,7 @@ const AddBuylist = ({ setAddMode, user_email }) => {
   const router = useRouter();
 
   const AddListData = async (data) => {
+    console.log(data)
     try {
       const res = await fetch(`/api/buylists/`, {
         method: "POST",
@@ -15,15 +16,15 @@ const AddBuylist = ({ setAddMode, user_email }) => {
         },
         body: JSON.stringify({
           user_email: user_email,
-          list_name: data.name,
-          list_description: data.description,
+          name: data.name,
+          description: data.description,
         }),
       });
 
       if (!res.ok) {
         throw new Error("Não foi possível adicionar a lista de compras");
       }
-      router.refresh();
+      window.location.reload();
     } catch (err) {
       setError(err);
       console.log(err);

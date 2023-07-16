@@ -21,7 +21,7 @@ const ToggleList = ({ buylists, onItemClick }) => {
               {item.name}
             </li>
           ))}
-          <li  onClick={() => handleItemClick(true)}>
+          <li onClick={() => handleItemClick(true)}>
             Criar nova lista de compras
           </li>
         </ul>

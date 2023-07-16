@@ -76,15 +76,7 @@ const Buylist = ({ listId, isBuylistCreator }) => {
       
       <p>{buylist.description}</p>
       <CopyURL url={window.location.href} />
-      
-      <h2>Produtos:</h2>
-      
-      {buylistProducts.map(product => (
-        <li key={product._id}>
-          <ProductData buylistProduct={product} isBuylistCreator={isBuylistCreator} />
-        </li>
-      ))}
-      
+
       {isBuylistCreator && (
         editMode ? (
           <EditBuylist listId={listId} setEditMode={setEditMode} />
@@ -100,6 +92,13 @@ const Buylist = ({ listId, isBuylistCreator }) => {
         </div>
       )}
       
+      <h2>Produtos:</h2>
+      
+      {buylistProducts.map(product => (
+        <li key={product._id}>
+          <ProductData buylistProduct={product} isBuylistCreator={isBuylistCreator} />
+        </li>
+      ))}      
     </div>
   );
 }

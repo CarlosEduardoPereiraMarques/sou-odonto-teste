@@ -157,9 +157,6 @@ const ProductPage = () => {
       console.log(err);
     }
   };
-
-
-
   return (
     <div>
       <h1>{product.name}</h1>
