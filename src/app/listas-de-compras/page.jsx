@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import LoginAlert from "@/components/LoginAlert";
-import Buylists from "@components/Buylists";
+
+import Buylists from "@/components/buylists";
 import CreateBuylistForm from "@/components/CreateBuylistForm";
 import styles from "@/app/styles/pages/UserBuylists.module.css";
 
