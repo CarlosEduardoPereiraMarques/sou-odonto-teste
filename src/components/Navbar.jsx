@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import styles from "@/app/styles/components/Navbar.module.css";
 import { useSession } from "next-auth/react";
@@ -35,6 +36,7 @@ const links = [
 
 const Navbar = () => {
   const session = useSession();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [showError, setShowError] = useState(false);
