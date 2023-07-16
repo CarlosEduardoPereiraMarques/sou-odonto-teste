@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import Buylist from "@/components/buylist";
+import Buylist from "@/components/Buylist";
 import styles from "@/app/styles/pages/UserBuylist.module.css";
 
 
