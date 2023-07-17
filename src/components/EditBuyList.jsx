@@ -24,7 +24,7 @@ const EditBuylist = ({ listId, setEditMode }) => {
       if (!res.ok) {
         throw new Error("Não foi possível editar a lista de compras");
       }
-      router.refresh();
+      window.location.reload();
     } catch (err) {
       setError(err);
       console.log(err);
