@@ -22,7 +22,7 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
         }),
       });
       if (res.status === 201) {
-        router.refresh();
+        window.location.reload();
       } else {
         setError("Erro ao excluir produto");
       }
