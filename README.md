@@ -61,12 +61,12 @@ Essa coleção contém os dados de informação sobre o usuário, que servirão 
 
 ```json
 {
-	_id: ObjectId("RandomObjectID"),
-	name: "Usuário Exemplo",
-	cpf: "99999999999",
-	email: "exemplo@exemplo.com",
-	password: "Exemplo",
-	__v: 0
+	"_id": "RandomObjectID",
+	"name": "Usuário Exemplo",
+	"cpf": "99999999999",
+	"email": "exemplo@exemplo.com",
+	"password": "Exemplo",
+	"__v": 0
 }
 ``` 
 
@@ -83,11 +83,11 @@ Essa coleção contém os dados das listas de compras criadas pelo usuário, ond
 ```json
 
 {
-	_id: ObjectId("RandomObjectID"),
-	user_id: "RandomObjectIDFromUserCollection",
-	name: "Lista de Exemplo",
-	description: "Descrição de Exemplo",
-	__v: 0
+	"_id": "RandomObjectID",
+	"user_id": "RandomObjectIDFromUserCollection",
+	"name": "Lista de Exemplo",
+	"description": "Descrição de Exemplo",
+	"__v": 0
 }
 
 ``` 
@@ -103,14 +103,14 @@ Essa coleção contém os dados do produto para exibi-lo na busca, página da ca
 ```json
 
 {
-	_id: ObjectId("RandomObjectID"),
-	id: 1,
-	name: "Produto Exemplo",
-	price: 99.99,
-	manufacturer: "Fabricante Exemplo",
-	category: "exemplo",
-	img: "link-para-a-imagem",
-	__v: 0
+	"_id": "RandomObjectID",
+	"id": 1,
+	"name": "Produto Exemplo",
+	"price": 99.99,
+	"manufacturer": "Fabricante Exemplo",
+	"category": "exemplo",
+	"img": "link-para-a-imagem",
+	"__v": 0
 }
 
 ```
@@ -129,12 +129,12 @@ Essa coleção contém os dados do produto para exibi-lo na busca, página da ca
 Essa coleção contém os dados do produto dentro da lista de compras do usuário, os campos user_id e list_id vinculam ao usuário e àquela lista de compras em específico.
 ```json
 {
-	_id: ObjectId("RandomObjectID"),
-	user_id: "RandomObjectIDFromUserCollection",
-	list_id: "RandomObjectIDFromBuylistCollection",
-	product_id: 1,
-	amount: 1,
-	obligatory_item: false
+	"_id": "RandomObjectID",
+	"user_id": "RandomObjectIDFromUserCollection",
+	"list_id": "RandomObjectIDFromBuylistCollection",
+	"product_id": 1,
+	"amount": 1,
+	"obligatory_item": false
 }
 ``` 
 
