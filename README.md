@@ -27,9 +27,5 @@ Siga as instruções abaixo para executar o projeto em seu ambiente local:
    ```
 4. Isso fará com que todas as dependências sejam instaladas e o servidor local irá abrir na rota http://localhost:3000
 
-### Como funciona o projeto?
-O projeto tem como intuito fornecer uma plataforma para um professor de Odontologia possa pesquisar por produtos e montar uma lista de compras para poder compartilhar com seus alunos.
-
-Este professor irá acessar o site https://sou-odonto-teste-338pzcapj-carloseduardopereiramarques.vercel.app
-
-E então será apresentado a home page da aplicação:
+O projeto pode ser acessado pelo link: 
+https://sou-odonto-teste-338pzcapj-carloseduardopereiramarques.vercel.app

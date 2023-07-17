@@ -117,7 +117,7 @@ const Buylist = ({ listId, isBuylistCreator }) => {
       </div>
 
       <h2 className={styles.productName}>Produtos:</h2>
-
+      {buylistProducts.length === 0 && <p>Nenhum produto na lista</p>}
       {buylistProducts.map((product) => (
         <li key={product._id} className={styles.listItem}>
           <ProductData
