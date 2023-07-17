@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import ToggleList from "@/components/ToggleList";
 import QuantityCounter from "@/components/QuantityCounter";
@@ -33,15 +32,15 @@ async function getBuylists(userEmail) {
 
 const Checkbox = ({ label, checked, onChange }) => {
   return (
-    <label className={styles.checkboxLabel}>
+    <div className={styles.checkboxLabel}>
+      <div>{label}</div>
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
         className={styles.checkbox}
       />
-      {label}
-    </label>
+    </div>
   );
 };
 
@@ -168,24 +167,33 @@ const ProductPage = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.title}>{product.name}</h1>
-        <p className={styles.text}>R${formatPrice(product.price)}</p>
-        <p className={styles.text}>Fabricante: {product.manufacturer}</p>
-        <img
-          src={`${product.img}`}
-          alt="Imagem do Produto"
-          style={{ width: "15rem", height: "15rem" }}
-        />
-        <QuantityCounter
-          value={selectedQuantity}
-          onChange={setSelectedQuantity}
-          initialValue={1}
-        />
-        <Checkbox
-          label="Item obrigatório"
-          checked={isRequired}
-          onChange={handleCheckboxChange}
-          className={styles.checkbox}
-        />{" "}
+        <div className={styles.image}>
+          <img
+            src={`${product.img}`}
+            alt="Imagem do Produto"
+          />
+        </div>
+        <div className={styles.info}>
+          <p className={styles.text}>R$ {formatPrice(product.price)}</p>
+          <div>
+            <p>Fabricante: </p>
+            <p className={styles.text}>{product.manufacturer}</p>
+          </div>
+        </div>
+
+        <div className={styles.options}>
+          <QuantityCounter
+            value={selectedQuantity}
+            onChange={setSelectedQuantity}
+            initialValue={1}
+          />
+          <Checkbox
+            label="Item obrigatório"
+            checked={isRequired}
+            onChange={handleCheckboxChange}
+          />
+        </div>
+        <div className={styles.addButtonContainer}>
         {session.status === "authenticated" ? (
           <>
             <ToggleList buylists={buylists} onItemClick={handleItemClick} />
@@ -201,13 +209,14 @@ const ProductPage = () => {
             {error && <div className={styles.errorMessage}>{error}</div>}
           </>
         ) : (
-          <button
+            <button
             onClick={() => router.push("/login")}
             className={styles.button}
           >
             Faça o login para adicionar a uma lista de compras
           </button>
         )}
+        </div>
       </div>
     </div>
   );

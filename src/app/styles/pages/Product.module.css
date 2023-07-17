@@ -1,33 +1,41 @@
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #c9bee6;
-  width: fit-content;
+  align-items: center;
+  min-height: 100vh;
 }
+.content {
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .title {
-  color: #ffffff;
+  color: #000000;
   font-size: 24px;
   margin-bottom: 10px;
+  text-align: center;
+  word-wrap: break-word;
 }
 
+
 .text {
-  color: #ffffff;
+  color: #000000;
   font-size: 16px;
   margin-bottom: 10px;
 }
 
 .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 4px;
   margin-bottom: 20px;
 }
+
 
 .checkbox {
   width: 20px;
@@ -61,6 +69,13 @@
   background-color: #e5cae8;
 }
 
+.addButtonContainer {
+  display: flex;
+  margin-top: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
 .successMessage {
   color: #ffffff;
   background-color: #1faf03;
@@ -79,4 +94,56 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options > * {
+  margin-right: 5em
+}
+
+.options > *:last-child {
+  margin-right: 0;
+}
+
+
+.checkboxLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.checkboxLabel > div {
+  margin-bottom: 10px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.info > * {
+  margin-right: 5rem
+}
+
+.info > *:last-child {
+  margin-right: 0;
+}
+
+
+.text {
+  font-weight: bold;
+}
+
+.text:first-child {
+  font-weight: bold;
+  font-size: 2em;
 }
