@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import ProductView from "@/components/ProductView";
 import styles from "@/app/styles/pages/ItemsView.module.css";
 
