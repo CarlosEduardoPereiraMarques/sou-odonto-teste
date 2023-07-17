@@ -41,7 +41,7 @@ const UserBuylist = () => {
       <ul className={styles.list}>
         {session.status === "authenticated" && (
           <li className={styles.listItem}>
-            <Buylists key={refreshKey} session={session} className="buylists" />
+            <Buylists key={refreshKey} session={session} />
           </li>
         )}
       </ul>

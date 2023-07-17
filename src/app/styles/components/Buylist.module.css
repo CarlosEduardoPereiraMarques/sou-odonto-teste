@@ -5,15 +5,22 @@
 }
 
 .buylistData {
-  background-color: #e5cae8;
+  background-color: #faf3f3 !important;
+
 }
 
 .title {
   color: #8b61f2;
+  font-size: 2rem;
+}
+
+.subtitle{
+  font-size: x-large;
+  color: #000000;
 }
 
 .description {
-  color: #ffffff;
+  color: #000000;  
 }
 
 .button {

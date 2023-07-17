@@ -1,33 +1,56 @@
 .productData {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 16px;
-  border: 1px solid #f7f7f7;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.171);
+  padding: 10px;
   border-radius: 4px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .productData h2 {
-  color: #8b61f2;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-.productData img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 16px;
+.productData .row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.productData p {
-  color: #e600ff;
-  margin-bottom: 8px;
+.productData .column {
+  flex-basis: 20%;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.productData .column:last-child {
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .productData .button {
-  background-color: #8b61f2;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  margin-right: 1rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.productData .deleteButton {
+  background-color: #f44336;
   color: #ffffff;
   padding: 8px 16px;
   border: none;
@@ -35,30 +58,22 @@
   cursor: pointer;
   margin-right: 8px;
 }
-
-.productData .button:hover {
-  background-color: #e5cae8;
-}
-
-.productData {
-  background-color: #f7f7f7;
-  color: #8b61f2;
-}
-
-.productData {
-  background-color: #e6e6e6;
-}
-
-.deleteButton {
-  color: #ffffff;
-  background-color: #e63838;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 8px;
-}
-
 .deleteButton:hover {
   background-color: #ff0000;
+}
+
+.productData .confirmationButtons {
+  margin-top: 10px;
+}
+
+.productData .editColumn {
+  flex-basis: calc(33.33% - 20px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.productData .deleteColumn {
+  flex-basis: calc(33.33% - 20px);
+  display: flex;
+  justify-content: flex-start;
 }

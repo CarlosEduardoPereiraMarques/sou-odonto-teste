@@ -55,8 +55,9 @@ const EditProductInList = ({ onUpdate, onClose, buylist }) => {
             disabled={!editingEnabled}
           />
         </div>
-        <div>
+        <div className={styles.buttonGroup}>
           <label className={styles.label}>
+            <span className={styles.labelCheck}>Obrigatório</span>
             <input
               type="checkbox"
               checked={isRequired}
@@ -64,7 +65,6 @@ const EditProductInList = ({ onUpdate, onClose, buylist }) => {
               disabled={!editingEnabled}
               className={styles.checkbox}
             />
-            Obrigatório
           </label>
         </div>
         {editingEnabled ? (

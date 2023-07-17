@@ -72,7 +72,11 @@ const Buylist = ({ listId, isBuylistCreator }) => {
     <div className={styles.container}>
       <div className={styles.buylistData}>
         <h1 className={styles.title}>{buylist.name}</h1>
-        <p className={styles.description}>{buylist.description}</p>
+        <div>
+        <h3 className={styles.subtitle}>Descrição:</h3>
+        <p className={`${styles.description} ${styles.descriptionWithMargin}`}>{buylist.description}</p>
+
+        </div>
         <CopyURL url={window.location.href} />
 
         {isBuylistCreator && (

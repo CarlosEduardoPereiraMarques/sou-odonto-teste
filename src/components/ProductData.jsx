@@ -71,12 +71,24 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
           alt={productData.name}
         />
       </Link>
-      <p>Nome: {productData.name}</p>
-      <p>Marca: {productData.manufacturer}</p>
-      <p>Quantidade: {buylistProduct.amount}</p>
-      <p>Obrigatório: {buylistProduct.obligatory_item ? "Sim" : "Não"}</p>
+      <div className={styles.column}>
+        <h2 >Nome</h2>
+        <p >{productData.name}</p>
+      </div>
+      <div className={styles.column}>
+        <h2 >Marca</h2>
+        <p >{productData.manufacturer}</p>
+      </div>
+      <div className={styles.column}>
+        <h2 >Quantidade</h2>
+        <p >{buylistProduct.amount}</p>
+      </div>
+      <div className={styles.column}>
+        <h2 >Obrigatório</h2>
+        <p>{buylistProduct.obligatory_item ? "Sim" : "Não"}</p>
+      </div>
       {isBuylistCreator && (
-        <div>
+        <div className="">
           {isEditing ? (
             <div>
               <EditProductInList
@@ -91,7 +103,7 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
                 Excluir item da lista?
               </button>
               {showConfirmation && (
-                <div>
+                <div className={styles.alignRight}>
                   <button className={styles.button} onClick={deleteProduct}>
                     Sim
                   </button>
@@ -105,7 +117,7 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
               )}
             </div>
           ) : (
-            <div>
+            <div className={styles["buttons-row"]}>
               <button onClick={handleToggleEditing} className={styles.button}>
                 Editar
               </button>
@@ -116,7 +128,7 @@ const ProductData = ({ buylistProduct, isBuylistCreator }) => {
                 Excluir item da lista?
               </button>
               {showConfirmation && (
-                <div>
+                <div className={styles["buttons-row"]}>
                   <button
                     onClick={deleteProduct}
                     className={styles.deleteButton}

@@ -15,7 +15,7 @@ const ToggleList = ({ buylists, onItemClick }) => {
   return (
     <div>
       <button onClick={toggleList} className={styles.button}>
-        Adicionar à lista
+        A qual lista deseja adicionar?
       </button>
       {showList && (
         <ul>
