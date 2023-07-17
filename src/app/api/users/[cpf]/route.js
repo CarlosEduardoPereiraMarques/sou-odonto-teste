@@ -7,11 +7,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectDB();
     const products = await User.findOne({ cpf: cpf });
-    if (products == null) {
-      return new NextResponse("User not found", { status: 404 });
-    } else {
-      return new NextResponse(JSON.stringify(products), { status: 200 });
-    }
+    return new NextResponse(JSON.stringify(products), { status: 200 });
   } catch (error) {
     return new NextResponse("Database Error", { status: 500 });
   }
