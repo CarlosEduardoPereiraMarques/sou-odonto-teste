@@ -1,6 +1,6 @@
 ## Sou Odonto - Teste
 
-    Este é um projeto de desafio fullstack para criar uma página onde um professor de odontologia possa montar uma lista de compras para seus alunos do próximo semestre.
+Este é um projeto de desafio fullstack para criar uma página onde um professor de odontologia possa montar uma lista de compras para seus alunos do próximo semestre.
 
 A página precisa ter:
 
